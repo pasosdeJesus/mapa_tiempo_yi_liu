@@ -1,12 +1,14 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mapa y graficos ",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "start": "webpack-dev-server --mode development",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "yarn run transpile",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -15,28 +17,11 @@
   "author": "Luis Alejandro Cruz y Vladimir Tamara sobre trabajo de Yi Liu",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.11.5",
     "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
-    "babel-loader": "^8.1.0",
-    "css-loader": "^4.2.2",
-    "html-webpack-plugin": "^4.4.1",
-    "lodash": "^4.17.19",
-    "mapshaper": "^0.4.158",
-    "patch-package": "^6.2.0",
-    "postinstall-postinstall": "^2.0.0",
-    "react-app-rewire-yaml": "^1.1.0",
-    "react-app-rewired": "^2.1.5",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.6.3"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.8.3",
     "@babel/plugin-transform-react-jsx": "^7.8.3",
     "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.8.3",
     "@ctrl/tinycolor": "3.1.3",
     "@fortawesome/fontawesome-free": "^5.11.2",
@@ -46,10 +31,13 @@
     "@nivo/stream": "^0.62.0",
     "@vx/pattern": "^0.0.198",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "6.26.0",
+    "babel-preset-jest": "^26.3.0",
     "bootstrap": "^4.3.1",
+    "css-loader": "^4.2.2",
     "d3": "^5.15.0",
     "d3-drag": "^1.2.5",
     "d3-force": "^2.0.1",
@@ -58,10 +46,18 @@
     "d3-time": "^1.1.0",
     "d3-zoom": "^1.8.3",
     "date-fns": "^2.14.0",
+    "file-loader": "^6.1.0",
     "flag-icon-css": "^3.5.0",
+    "html-webpack-plugin": "^4.4.1",
     "js-yaml-loader": "^1.2.2",
+    "lodash": "^4.17.19",
+    "mapshaper": "^0.4.158",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-app-rewire-yaml": "^1.1.0",
+    "react-app-rewired": "^2.1.5",
     "react-compound-slider": "^2.5.0",
     "react-d3-graph": "^2.5.0",
     "react-device-detect": "^1.13.1",
@@ -79,7 +75,16 @@
     "react-tooltip": "^4.2.7",
     "reactstrap": "^8.5.1",
     "style-loader": "^1.2.1",
-    "svg-url-loader": "^6.0.0"
+    "svg-url-loader": "^6.0.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "keywords": [
     "map",

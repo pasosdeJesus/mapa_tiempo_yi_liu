@@ -1,9 +1,5 @@
 import React from 'react';
 import { render} from 'react-dom';
-import CompReactWebpackStiff2018 from '../../src';
+import App from '../../src';
 
-const App2 = () => (
-      <CompReactWebpackStiff2018/>
-);
-
-render(<App2 />, document.getElementById("root"));
+render(<App/>, document.getElementById("root"));
