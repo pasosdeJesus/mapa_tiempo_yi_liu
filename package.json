@@ -1,0 +1,92 @@
+{
+  "name": "@pasosdejesus/mapa_tiempo_yi_liu",
+  "version": "0.1.0",
+  "description": "Mapa y graficos ",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/pasosdeJesus/mapa_tiempo_yi_liu"
+  },
+  "author": "Luis Alejandro Cruz y Vladimir Tamara sobre trabajo de Yi Liu",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.2",
+    "html-webpack-plugin": "^4.4.1",
+    "lodash": "^4.17.19",
+    "mapshaper": "^0.4.158",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0",
+    "react-app-rewire-yaml": "^1.1.0",
+    "react-app-rewired": "^2.1.5",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.6.3"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@ctrl/tinycolor": "3.1.3",
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@nivo/bump": "^0.62.0",
+    "@nivo/circle-packing": "^0.62.0",
+    "@nivo/line": "^0.62.0",
+    "@nivo/stream": "^0.62.0",
+    "@vx/pattern": "^0.0.198",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "6.26.0",
+    "bootstrap": "^4.3.1",
+    "d3": "^5.15.0",
+    "d3-drag": "^1.2.5",
+    "d3-force": "^2.0.1",
+    "d3-scale": "^3.2.1",
+    "d3-scale-chromatic": "^1.5.0",
+    "d3-time": "^1.1.0",
+    "d3-zoom": "^1.8.3",
+    "date-fns": "^2.14.0",
+    "flag-icon-css": "^3.5.0",
+    "js-yaml-loader": "^1.2.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-compound-slider": "^2.5.0",
+    "react-d3-graph": "^2.5.0",
+    "react-device-detect": "^1.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^3.10.0",
+    "react-loader-spinner": "^3.1.14",
+    "react-measure": "^2.3.0",
+    "react-scripts": "^3.3.1",
+    "react-select": "^3.1.0",
+    "react-simple-maps": "^2.1.2",
+    "react-table": "^7.2.2",
+    "react-text-transition": "^1.0.2",
+    "react-toggle": "^4.1.1",
+    "react-tooltip": "^4.2.7",
+    "reactstrap": "^8.5.1",
+    "style-loader": "^1.2.1",
+    "svg-url-loader": "^6.0.0"
+  },
+  "keywords": [
+    "map",
+    "react",
+    "chart"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}
