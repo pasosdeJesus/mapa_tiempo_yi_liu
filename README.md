@@ -1,5 +1,5 @@
 Componente react para mostrar datos geolocalizados y con tiempo en un mapa 
-y con varias posibilidades de explorar los datos interactivamente.
+y con varias posibilidades de explorarlos interactivamente.
 
 Reusa las fuentes de covid19.health desarrollado por Yi Liu 
 y disponible en https://github.com/stevenliuyi/covid19 con licencia
@@ -7,21 +7,21 @@ MIT
 
 Está en desarrollo
 
-Para la distribución como paquete npm, utiliza webpack, siguiendo 
-este ejemplo:
-<https://github.com/vtamara/react_ejemplo_stiff>
 
-
-# 1. Demo muy precario
-
-```
-yarn start
-```
-
-# 2. Usar desde una aplicación.
+# 1. Uso
 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
+yarn add svg-url-loader style-loader reactstrap react-tooltip \
+ react-toggle react-text-transition react-table react-simple-maps \
+ react-select react-scripts react-measure react-loader-spinner \
+ react-icons react-helmet react-device-detect react-d3-graph \
+ react-compound-slider react-app-rewired react-app-rewire-yaml \
+ postinstall-postinstall patch-package mapshaper lodash js-yaml-loader \
+ html-webpack-plugin flag-icon-css file-loader date-fns d3-zoom d3-time \
+ d3-scale-chromatic d3-scale d3-force d3-drag d3 css-loader @vx/pattern \
+ @nivo/stream @nivo/line @nivo/circle-packing @nivo/bump @ctrl/tinycolor \
+ @babel/preset-env @babel/core
 yarn install
 ```
 
@@ -51,6 +51,21 @@ responda a peticiones GET así:
 </dl>
   
     
+
+
+# 2. Desarrollo de este paquete
+
+Para la distribución como paquete npm, utiliza webpack, siguiendo 
+este ejemplo:
+<https://github.com/vtamara/react_ejemplo_stiff>
+
+
+
+# 2.1. Demo muy precario
+
+  yarn start
+
+
 
 # 3. Publicar
   
