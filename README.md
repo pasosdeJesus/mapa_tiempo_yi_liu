@@ -12,6 +12,16 @@ Está en desarrollo
 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
+yarn add svg-url-loader style-loader reactstrap react-tooltip \
+ react-toggle react-text-transition react-table react-simple-maps \
+ react-select react-scripts react-measure react-loader-spinner \
+ react-icons react-helmet react-device-detect react-d3-graph \
+ react-compound-slider react-app-rewired react-app-rewire-yaml \
+ postinstall-postinstall patch-package mapshaper lodash js-yaml-loader \
+ html-webpack-plugin flag-icon-css file-loader date-fns d3-zoom d3-time \
+ d3-scale-chromatic d3-scale d3-force d3-drag d3 css-loader @vx/pattern \
+ @nivo/stream @nivo/line @nivo/circle-packing @nivo/bump @ctrl/tinycolor \
+ @babel/preset-env @babel/core
 yarn install
 ```
 
