@@ -14,8 +14,9 @@ este ejemplo:
 
 # 1. Demo muy precario
 
-  yarn start
-
+```
+yarn start
+```
 
 # 2. Usar desde una aplicación.
 

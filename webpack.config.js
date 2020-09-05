@@ -33,5 +33,6 @@ module.exports = {
   devServer: {
     host: '181.143.184.115',
     port: 2700 
-  }
+  },
+  devtool: "source-map"
 };
