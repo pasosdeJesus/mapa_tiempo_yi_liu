@@ -7,17 +7,8 @@ MIT
 
 Está en desarrollo
 
-Para la distribución como paquete npm, utiliza webpack, siguiendo 
-este ejemplo:
-<https://github.com/vtamara/react_ejemplo_stiff>
 
-
-# 1. Demo muy precario
-
-  yarn start
-
-
-# 2. Usar desde una aplicación.
+# 1. Uso
 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
@@ -50,6 +41,21 @@ responda a peticiones GET así:
 </dl>
   
     
+
+
+# 2. Desarrollo de este paquete
+
+Para la distribución como paquete npm, utiliza webpack, siguiendo 
+este ejemplo:
+<https://github.com/vtamara/react_ejemplo_stiff>
+
+
+
+# 2.1. Demo muy precario
+
+  yarn start
+
+
 
 # 3. Publicar
   
