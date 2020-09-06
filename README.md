@@ -12,7 +12,7 @@ Está en desarrollo
 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
-yarn add svg-url-loader style-loader reactstrap react-tooltip \
+yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
  react-toggle react-text-transition react-table react-simple-maps \
  react-select react-scripts react-measure react-loader-spinner \
  react-icons react-helmet react-device-detect react-d3-graph \
