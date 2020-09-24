@@ -50,10 +50,32 @@ responda a peticiones GET así:
   <dd>que retorne `all.json` como en <https://github.com/pasosdeJesus/sivel2_gen/raw/usa_paq_mapa_tiempo/test/dummy/public/data/all.json></dt>
 </dl>
   
-    
+# 2. Ayudas para resolver problemas en el uso
+
+Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, y requiere unas versiones particulares que pueden ser diferentes a las que su aplicación ya tenga.  Puede ayudarle a determinar esta situación:
+
+  yarn check
+
+Si requiere versiones más actualizadas de las requeridas por este paquete pued clonarlo y usar su copia en github para actualizarla
+
+  git clone git@github/miusuario/mapa_tiempo_yi_liu
+  yarn upgrade
+  yarn install
+  git commit -m "Actualiza" -a
+  git push origin master
+  
+Y use su copia clonada en lugar de la de repositorio en pasosdeJesus, modificando su archivo `package.json` para cambiar
+
+  @pasosdejesus/mapa_tiempo_yi_liu": "0.1.3",
+
+por
+
+  @pasosdejesus/mapa_tiempo_yi_liu": "github:vtamara/mapa_tiempo_yi_liu",
 
 
-# 2. Desarrollo de este paquete
+En caso de actualizar le agradecemos nos 
+
+# 3. Desarrollo de este paquete
 
 Para la distribución como paquete npm, utiliza webpack, siguiendo 
 este ejemplo:
@@ -61,12 +83,13 @@ este ejemplo:
 
 
 
-# 2.1. Demo muy precario
+# 3.1. Demo muy precario
 
   yarn start
 
+Iniciará una instancia que escucha http en el puerto 2700.
 
 
-# 3. Publicar
+# 3.2. Publicar
   
   yarn publish
