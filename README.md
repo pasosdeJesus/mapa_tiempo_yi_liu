@@ -115,6 +115,7 @@ un servidor que le responda con la información que requiere.
 Es importante que haya poblado el directorio `dist` ejecutando:
 
     yarn build
+    yarn run transpile
     
 Y después desde el directorio de su aplicación que use este paquete
 puede ejecutar
@@ -127,11 +128,11 @@ que debe ser el que use el webpack de su aplicación.
 
 Si en lugar de un directorio local quisiera emplear su cuenta en github
 tenga en cuenta que `yarn` (al menos hasta la versión 1.22.4) no soporta
-el `prepare` de `package.json`  --que si es soportado por `npm`-- y que
+el `prepare` de `package.json`  --que se supone si es soportado por `npm`-- y que
 indica como construir el paquete cuando se descarga de un sitio sólo 
 con fuentes.
 
-El registro de npm no presenta estas dificultades porque construye
+No tendrá este tipo de problemas sEl registro de npm no presenta estas dificultades porque construye
 el proyecto y la de
 
 Es importate que pruebe sus cambios para eso, prim
