@@ -8,8 +8,9 @@ MIT
 Está en desarrollo
 
 
-# 1. Uso
+# 1. Uso desde una aplicación Ruby on Rails
 
+Como se explica en <https://github.com/pasosdeJesus/sip/wiki/2020_08-Formulario-interactivo-con-react-en-una-aplicaci%C3%B3n-que-usa-sip> es conveniente que actualice a la versión más reciente de `webpacker`, que la instale y/o que actualice sus archivos de configuración y prepare `webpacker` para desarrollar con react.  También es recomendable que use la gema react-rails y si hace falta que la instale y/o actualice sus archivos de configuración.  Tras esto puede añadir las dependencias que este paquete exige: 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
 yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
@@ -87,7 +88,9 @@ este ejemplo:
 
     yarn start
 
-Iniciará una instancia que escucha http en el puerto 2700.
+Iniciará una instancia que escucha http en el puerto 2700.  Al revisar con un
+navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
+un servidor que le responda con la información que requiere.
 
 
 # 3.2. Publicar
