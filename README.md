@@ -20,7 +20,7 @@ yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
  react-compound-slider react-app-rewired react-app-rewire-yaml \
  postinstall-postinstall patch-package mapshaper lodash js-yaml-loader \
  html-webpack-plugin flag-icon-css file-loader date-fns d3-zoom d3-time \
- d3-scale-chromatic d3-scale d3-force d3-drag d3 css-loader @vx/pattern \
+ d3-scale-chromatic d3-scale d3-force d3-drag d3 css-loader d3-selection @vx/pattern \
  @nivo/stream @nivo/line @nivo/circle-packing @nivo/bump @ctrl/tinycolor \
  @babel/preset-env @babel/core
 yarn install
