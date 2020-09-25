@@ -140,8 +140,12 @@ antes de volver a compilar con webpacker elimine el directorio `public/packs`:
 
 ### 3.1.3 Use su paquete en github desde una aplicación
 
-Si en lugar de un directorio local quisiera emplear su cuenta en github
-tenga en cuenta que `yarn` (al menos hasta la versión 1.22.4) no soporta
+Para evitar tener que borrar node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules
+cada vez que haga cambios en su copia local, puede optar por subir
+los cambios  a su repositorio github y referenciar el mismo desde
+su archivo package.json.  
+
+Con ese plan, tenga en cuenta que `yarn` (al menos hasta la versión 1.22.4) no soporta
 el `prepare` de `package.json`  --que se supone si es soportado por `npm`-- y que
 indica como construir el paquete cuando se descarga de un sitio sólo 
 con fuentes.
@@ -161,11 +165,22 @@ y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
      yarn remove clean @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
 
-### 3.1.4 Actulizar dependencias
+### 3.1.4 Actualizar dependencias
 
-Revise `package.json` para asegurar que las dependencias de `peer-dependencies` 
-no están en `dev-dependencies` y si las hay mueva de `dev-dependencies` (que debe estar más actualizada) 
-a `peer-dependencies` y a `dependencies`. 
+Revise `package.json` para asegurar la distribución correcta de los paquetes de los que
+depende este, entre las 3 secciones de dependencias:
+* de desarrollo `peer-dependencies`,
+* requeridas en tiempo de ejecución en la aplicación que use este paquete `peer-dependencies`
+* y requeridas durante desarrollo y ejecución de la aplicación que use esta `dependencies`
+De esa distribución depende el tamaño del compilado en `dist` y 
+los paquetes que un aplicación que use esta vayan a requerir.
+Sería ideal que `dependencies` estuviera en blanco, pues las versiones que allí se
+pongan serán precisamente las que deben ponerse en la aplicación que usará este paquete. Sabrá que una
+dependencia debe estar en esta sección si al ejecutar yarn install en este paquete obtiene
+un error del estilo:
+    
+    ERROR in ./src/components/RawTable.js
+    Module not found: Error: Can't resolve 'react-table' in '/ruta/comp/js/mapa_tiempo_yi_liu-pasosdeJesus/src/components'  
 
 Revise consistencia con
 
