@@ -10,7 +10,7 @@ Está en desarrollo
 
 # 1. Uso desde una aplicación Ruby on Rails
 
-Como se explica en <https://github.com/pasosdeJesus/sip/wiki/2020_08-Formulario-interactivo-con-react-en-una-aplicaci%C3%B3n-que-usa-sip> es conveniente que actualice a la versión más reciente de `webpacker`, que la instale y/o que actualice sus archivos de configuración y prepare `webpacker` para desarrollar con react.  También es recomendable que use la gema react-rails y si hace falta que la instale y/o actualice sus archivos de configuración.  Tras esto puede añadir las dependencias que este paquete exige: 
+Como se explica en <https://github.com/pasosdeJesus/sip/wiki/2020_08-Formulario-interactivo-con-react-en-una-aplicaci%C3%B3n-que-usa-sip> es conveniente que actualice a la versión más reciente de `webpacker`, que la instale y/o que actualice sus archivos de configuración y que prepare `webpacker` para desarrollar con `react`.  También es recomendable que use la gema `react-rails` y si hace falta que la instale y/o actualice la configuración de `react-rails`.  Tras esto puede añadir las dependencias que este paquete exige: 
 ```
 yarn add @pasosdejesus/mapa_tiempo_yi_liu
 yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
@@ -73,7 +73,29 @@ Para la distribución como paquete npm, utiliza webpack, siguiendo
 este ejemplo:
 <https://github.com/vtamara/react_ejemplo_stiff>
 
-## 3.1 Usar su copia 
+## 3.1 Publicar cambios en registro npm
+
+Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión ya publicada.
+
+Una vez actualizadas dependencias y revisado con `yarn check`  aumente la versión en `package.json`.
+Compile con:
+
+    yarn build
+    yarn run transpile
+    
+Pruebe minimamente operación  con
+
+    yarn start
+
+que iniciará una instancia que escucha http en el puerto 2700.  Al revisar con un
+navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
+un servidor que le responda con la información que requiere.
+
+Los cambios se publican en el registro npm con
+    
+    yarn publish
+
+## 3.2 Usar su copia 
 
 Para empezar a hacer cambios sugerimos que bifurque este repositorio y clone su repositorio bifurcado:
     
@@ -96,7 +118,7 @@ por ejemplo con
 
     yarn upgrade d3
     
-### 3.1.1 Probar sus cambios
+### 3.2.1 Probar sus cambios
 
 Para probar las actualizaciones o cambios que haga gener el directorio dist con
 
@@ -110,7 +132,7 @@ que iniciará una instancia que escucha http en el puerto 2700.  Al revisar con 
 navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
 un servidor que le responda con la información que requiere.
  
-### 3.1.2 Usar su paquete modificado desde una aplicación
+### 3.2.2 Usar su paquete modificado desde una aplicación
 
 Es importante que haya poblado el directorio `dist` ejecutando:
 
@@ -163,9 +185,6 @@ En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Reque
 
 Por otra parte aún despues de tener una copia actualizada en node_modules hemos
 notado que yarn (al menos hasta la versioń 
-
-
-# 3.2. Demo muy precario
 
 
 
