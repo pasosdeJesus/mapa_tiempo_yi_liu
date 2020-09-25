@@ -73,17 +73,19 @@ Para la distribución como paquete npm, utiliza webpack, siguiendo
 este ejemplo:
 <https://github.com/vtamara/react_ejemplo_stiff>
 
-## 3.1 Actualizar dependencias y usar su copia 
+## 3.1 Usar su copia 
 
-Para empezar a hacer cambios sugerimos que clone
-
+Para empezar a hacer cambios sugerimos que bifurque este repositorio y clone su repositorio bifurcado:
+    
+    mkdir -p ~/comp/js/
+    cd ~/comp/js/
     git clone git@github/miusuario/mapa_tiempo_yi_liu
     cd mapa_tiempo_yi_liu
     yarn upgrade
     yarn install
     
 Después revise `package.json` para asegurar que las dependencias de `peer-dependencies` 
-no están en `dev-dependencies` y si las hay mueva la de `dev-dependencies` (que debe estar más actualizada) 
+no están en `dev-dependencies` y si las hay mueva de `dev-dependencies` (que debe estar más actualizada) 
 a `peer-dependencies`. 
 Puede revisar consistencia con
 
@@ -94,6 +96,45 @@ por ejemplo con
 
     yarn upgrade d3
     
+### 3.1.1 Probar sus cambios
+
+Para probar las actualizaciones o cambios que haga gener el directorio dist con
+
+    yarn build
+    
+Y pruebe minimamente operación  con
+
+    yarn start
+
+que iniciará una instancia que escucha http en el puerto 2700.  Al revisar con un
+navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
+un servidor que le responda con la información que requiere.
+ 
+### 3.1.2 Usar su paquete modificado desde una aplicación
+
+Es importante que haya poblado el directorio `dist` ejecutando:
+
+    yarn build
+    
+Y después desde el directorio de su aplicación que use este paquete
+puede ejecutar
+ 
+    yarn add file:$HOME/comp/js/mapa_tiempo_yi_liu
+    
+Esto instalará las fuentes completas, pero especialmente el compilado
+que quedara en `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/dist/` y 
+que debe ser el que use el webpack de su aplicación.
+
+Si en lugar de un directorio local quisiera emplear su cuenta en github
+tenga en cuenta que `yarn` (al menos hasta la versión 1.22.4) no soporta
+el `prepare` de `package.json`  --que si es soportado por `npm`-- y que
+indica como construir el paquete cuando se descarga de un sitio sólo 
+con fuentes.
+
+El registro de npm no presenta estas dificultades porque construye
+el proyecto y la de
+
+Es importate que pruebe sus cambios para eso, prim
 Y finalmente actualizar
 
     git commit -m "Actualiza" -a
@@ -119,15 +160,12 @@ que queda en yarn.lock).  Hemos encontrado útil:
      
 En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
 
+Por otra parte aún despues de tener una copia actualizada en node_modules hemos
+notado que yarn (al menos hasta la versioń 
 
 
 # 3.2. Demo muy precario
 
-    yarn start
-
-Iniciará una instancia que escucha http en el puerto 2700.  Al revisar con un
-navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
-un servidor que le responda con la información que requiere.
 
 
 # 3.3. Publicar en registro npm
