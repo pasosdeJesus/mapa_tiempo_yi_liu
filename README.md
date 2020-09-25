@@ -73,6 +73,21 @@ Para empezar a hacer cambios sugerimos que clone
     cd mapa_tiempo_yi_liu
     yarn upgrade
     yarn install
+    
+Después revise `package.json` para asegurar que las dependencias de `peer-dependencies` 
+no están en `dev-dependencies` y si las hay mueva la de `dev-dependencies` (que debe estar más actualizada) 
+a `peer-dependencies`. 
+Puede revisar consistencia con
+
+    yarn check
+
+Puede que tenga que actualizar manualmente paquete a paquete en unos casos,
+por ejemplo con
+
+    yarn upgrade d3
+    
+Y finalmente actualizar
+
     git commit -m "Actualiza" -a
     git push origin master
   
