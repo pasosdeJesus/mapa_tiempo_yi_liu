@@ -110,7 +110,7 @@ Es importante que en su copia local de `mapa_tiempo_yi_liu` pueble el directorio
     yarn build
     yarn run transpile
     
-Después si desde el directorio de su aplicación que use este paquete
+Después desde el directorio de la aplicación que use este paquete
 puede ejecutar
  
     cd ~/comp/miap
@@ -121,7 +121,22 @@ del directorio `dist`
 que quedará en `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/dist/` y 
 que debe ser el que use el webpack de su aplicación.
 
-En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
+Sin embargo como en `node_modules` queda una copia completa de sus fuentes 
+locales de `mapa_tiempo_yi_liu`, también quedará copia del directorio 
+`node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules` que debe
+borrar para evitar un excesivo tiempo en la ejecución de webpacker:compile 
+(que dará más de 40.000 dependencias en lugar de cerca de 20.000) y al ejecutar
+verá el error 321 de React (Invalid hook call) por tener duplicado react.   
+Por eso debe ejecutar:
+
+    rm -rf node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules
+
+Hemos notado que para evitar estas duplicacions, también es recomendable que desde su aplicación
+antes de volver a compilar con webpacker elimine el directorio `public/packs`:
+
+     rm -rf public/packs/*
+     bin/rails webpacker:compile
+     
 
 ### 3.1.3 Use su paquete en github desde una aplicación
 
@@ -160,6 +175,8 @@ Puede que tenga que actualizar manualmente paquete a paquete en unos casos,
 por ejemplo con
 
     yarn upgrade d3
+
+En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
 
 
 ## 3.2 Publicar cambios en registro npm
