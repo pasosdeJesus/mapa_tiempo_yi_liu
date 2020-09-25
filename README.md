@@ -57,9 +57,20 @@ Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, y 
 
     yarn check
 
-Si requiere versiones más actualizadas de las requeridas por este paquete puede clonarlo y usar su copia en github para actualizarla
+Si requiere versiones más actualizadas de las requeridas por este paquete, ve en la siguiente sección como puede actualizar paquetes de los que depende este.
+
+# 3. Desarrollo de este paquete
+
+Para la distribución como paquete npm, utiliza webpack, siguiendo 
+este ejemplo:
+<https://github.com/vtamara/react_ejemplo_stiff>
+
+## 3.1 Actualizar dependencias y usar su copia 
+
+Para empezar a hacer cambios sugerimos que clone
 
     git clone git@github/miusuario/mapa_tiempo_yi_liu
+    cd mapa_tiempo_yi_liu
     yarn upgrade
     yarn install
     git commit -m "Actualiza" -a
@@ -74,17 +85,11 @@ por
     @pasosdejesus/mapa_tiempo_yi_liu": "github:vtamara/mapa_tiempo_yi_liu",
 
 
-En caso de actualizar le agradecemos nos 
-
-# 3. Desarrollo de este paquete
-
-Para la distribución como paquete npm, utiliza webpack, siguiendo 
-este ejemplo:
-<https://github.com/vtamara/react_ejemplo_stiff>
+En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
 
 
 
-# 3.1. Demo muy precario
+# 3.2. Demo muy precario
 
     yarn start
 
@@ -93,6 +98,8 @@ navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
 un servidor que le responda con la información que requiere.
 
 
-# 3.2. Publicar
+# 3.3. Publicar en registro npm
+
+Recordar aumentar la versión en `package.json` y ejecutar
   
     yarn publish
