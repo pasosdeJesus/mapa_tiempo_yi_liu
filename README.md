@@ -53,11 +53,19 @@ responda a peticiones GET así:
   
 # 2. Ayudas para resolver problemas en el uso
 
-Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, y requiere unas versiones particulares que pueden ser diferentes a las que su aplicación ya tenga.  Puede ayudarle a determinar esta situación:
+Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, 
+y requiere unas versiones particulares que pueden ser diferentes a las que 
+su aplicación ya tenga.  Puede ayudarle a determinar esta situación:
 
     yarn check
 
-Si requiere versiones más actualizadas de las requeridas por este paquete, ve en la siguiente sección como puede actualizar paquetes de los que depende este.
+Puede que tenga que revisar y limpiar cache:
+    
+    yarn cache list
+
+Si requiere versiones más actualizadas de las requeridas por este paquete, 
+vea en la siguiente sección como puede actualizar paquetes de los que depende este.
+
 
 # 3. Desarrollo de este paquete
 
@@ -100,6 +108,15 @@ por
     @pasosdejesus/mapa_tiempo_yi_liu": "github:vtamara/mapa_tiempo_yi_liu",
 
 
+Puede que al actualizar su repositorio el cambio no se refleje en la 
+aplicación donde la usa (pues depende de la copia de @node_modules,
+de la copia que queda en el cache ~/.cache/yarn y del condensado sha
+que queda en yarn.lock).  Hemos encontrado útil:
+
+     yarn cache clean @pasosdejesus/mapa_tiempo_yi_liu
+     yarn remove clean @pasosdejesus/mapa_tiempo_yi_liu
+     yarn add github:miusuario/mapa_tiempo_yi_liu
+     
 En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
 
 
