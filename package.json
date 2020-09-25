@@ -1,6 +1,6 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Mapa y graficos ",
   "main": "dist/index.js",
   "scripts": {
@@ -38,8 +38,6 @@
     "babel-preset-jest": "^26.3.0",
     "bootstrap": "^4.3.1",
     "css-loader": "^4.2.2",
-    "d3-force": "^2.0.1",
-    "d3-scale": "^3.2.1",
     "date-fns": "^2.14.0",
     "file-loader": "^6.1.0",
     "flag-icon-css": "^3.5.0",
@@ -63,7 +61,6 @@
     "react-scripts": "^3.3.1",
     "react-select": "^3.1.0",
     "react-simple-maps": "^2.1.2",
-    "react-table": "^7.2.2",
     "react-text-transition": "^1.0.2",
     "react-toggle": "^4.1.1",
     "react-tooltip": "^4.2.7",
@@ -91,6 +88,7 @@
     "d3-force": "^2.0.1",
     "d3-scale": "^3.2.1",
     "d3-scale-chromatic": "^2.0.0",
+    "d3-selection": "^2.0.0",
     "d3-time": "^2.0.0",
     "d3-zoom": "^2.0.0",
     "date-fns": "^2.14.0",
@@ -135,11 +133,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "3.1.4",
-    "d3": "^6.2.0",
-    "d3-drag": "^2.0.0",
-    "d3-scale-chromatic": "^2.0.0",
-    "d3-time": "^2.0.0",
-    "d3-zoom": "^2.0.0",
-    "mapshaper": "^0.5.21"
+    "d3-force": "^2.0.1",
+    "react-table": "^7.2.2"
   }
 }
