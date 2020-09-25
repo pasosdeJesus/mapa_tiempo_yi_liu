@@ -57,7 +57,7 @@ Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, y 
 
     yarn check
 
-Si requiere versiones más actualizadas de las requeridas por este paquete pued clonarlo y usar su copia en github para actualizarla
+Si requiere versiones más actualizadas de las requeridas por este paquete puede clonarlo y usar su copia en github para actualizarla
 
     git clone git@github/miusuario/mapa_tiempo_yi_liu
     yarn upgrade
