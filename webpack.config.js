@@ -31,7 +31,7 @@ module.exports = {
     extensions: [".js", ".jsx"]
   },
   devServer: {
-    host: '181.143.184.115',
+    host: '0.0.0.0',//181.143.184.115',
     port: 2700 
   },
   devtool: "source-map"
