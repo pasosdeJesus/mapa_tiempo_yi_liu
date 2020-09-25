@@ -76,7 +76,8 @@ este ejemplo:
 
 ## 3.1 Utilizando su propia copia
 
-Para empezar a hacer cambios sugerimos que bifurque este repositorio y clone su repositorio bifurcado:
+Para empezar a hacer cambios sugerimos que bifurque este repositorio, clone su repositorio bifurcado y 
+compile a partir de sus fuentes lo que irá en `dist`:
     
     mkdir -p ~/comp/js/
     cd ~/comp/js/
@@ -84,18 +85,9 @@ Para empezar a hacer cambios sugerimos que bifurque este repositorio y clone su 
     cd mapa_tiempo_yi_liu
     yarn upgrade
     yarn install
-    
-Después revise `package.json` para asegurar que las dependencias de `peer-dependencies` 
-no están en `dev-dependencies` y si las hay mueva de `dev-dependencies` (que debe estar más actualizada) 
-a `peer-dependencies`. 
-Puede revisar consistencia con
 
-    yarn check
+El último paso debe ejecutar `yarn build` y `yarn run transpile`.
 
-Puede que tenga que actualizar manualmente paquete a paquete en unos casos,
-por ejemplo con
-
-    yarn upgrade d3
     
 ### 3.1.1 Probar sus cambios
 
@@ -153,7 +145,21 @@ y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
      yarn cache clean @pasosdejesus/mapa_tiempo_yi_liu
      yarn remove clean @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
-     
+
+### 3.1.4 Actulizar dependencias
+
+Revise `package.json` para asegurar que las dependencias de `peer-dependencies` 
+no están en `dev-dependencies` y si las hay mueva de `dev-dependencies` (que debe estar más actualizada) 
+a `peer-dependencies` y a `dependencies`. 
+
+Revise consistencia con
+
+    yarn check
+
+Puede que tenga que actualizar manualmente paquete a paquete en unos casos,
+por ejemplo con
+
+    yarn upgrade d3
 
 
 ## 3.2 Publicar cambios en registro npm
