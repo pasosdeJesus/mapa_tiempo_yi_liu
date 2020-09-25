@@ -73,29 +73,8 @@ Para la distribución como paquete npm, utiliza webpack, siguiendo
 este ejemplo:
 <https://github.com/vtamara/react_ejemplo_stiff>
 
-## 3.1 Publicar cambios en registro npm
 
-Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión ya publicada.
-
-Una vez actualizadas dependencias y revisado con `yarn check`  aumente la versión en `package.json`.
-Compile con:
-
-    yarn build
-    yarn run transpile
-    
-Pruebe minimamente operación  con
-
-    yarn start
-
-que iniciará una instancia que escucha http en el puerto 2700.  Al revisar con un
-navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
-un servidor que le responda con la información que requiere.
-
-Los cambios se publican en el registro npm con
-    
-    yarn publish
-
-## 3.2 Usar su copia 
+## 3.1 Utilizando su propia copia
 
 Para empezar a hacer cambios sugerimos que bifurque este repositorio y clone su repositorio bifurcado:
     
@@ -118,12 +97,12 @@ por ejemplo con
 
     yarn upgrade d3
     
-### 3.2.1 Probar sus cambios
+### 3.1.1 Probar sus cambios
 
 Para probar las actualizaciones o cambios que haga gener el directorio dist con
 
     yarn build
-    
+    yarn run transpile 
 Y pruebe minimamente operación  con
 
     yarn start
@@ -132,21 +111,27 @@ que iniciará una instancia que escucha http en el puerto 2700.  Al revisar con 
 navegador deberá ver que empieza a cargar, pero no mucho más por cuanto no hay
 un servidor que le responda con la información que requiere.
  
-### 3.2.2 Usar su paquete modificado desde una aplicación
+### 3.1.2 Use su paquete modificado localmente desde una aplicación
 
-Es importante que haya poblado el directorio `dist` ejecutando:
+Es importante que en su copia local de `mapa_tiempo_yi_liu` pueble el directorio `dist` ejecutando:
 
     yarn build
     yarn run transpile
     
-Y después desde el directorio de su aplicación que use este paquete
+Después si desde el directorio de su aplicación que use este paquete
 puede ejecutar
  
+    cd ~/comp/miap
     yarn add file:$HOME/comp/js/mapa_tiempo_yi_liu
     
 Esto instalará las fuentes completas, pero especialmente el compilado
-que quedara en `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/dist/` y 
+del directorio `dist`
+que quedará en `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/dist/` y 
 que debe ser el que use el webpack de su aplicación.
+
+En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
+
+### 3.1.3 Use su paquete en github desde una aplicación
 
 Si en lugar de un directorio local quisiera emplear su cuenta en github
 tenga en cuenta que `yarn` (al menos hasta la versión 1.22.4) no soporta
@@ -154,42 +139,34 @@ el `prepare` de `package.json`  --que se supone si es soportado por `npm`-- y qu
 indica como construir el paquete cuando se descarga de un sitio sólo 
 con fuentes.
 
-No tendrá este tipo de problemas sEl registro de npm no presenta estas dificultades porque construye
-el proyecto y la de
+Por este motivo deber agregar el directorio `dist`  a su repositorio github.
 
-Es importate que pruebe sus cambios para eso, prim
-Y finalmente actualizar
+Una vez en la aplicación indique que usará su versión publicada en github:
 
-    git commit -m "Actualiza" -a
-    git push origin master
-  
-Y use su copia clonada en lugar de la de repositorio en pasosdeJesus, modificando su archivo `package.json` para cambiar
+    yarn add github:miusuario/mapa_tiempo_yi_liu
 
-    @pasosdejesus/mapa_tiempo_yi_liu": "0.1.3",
-
-por
-
-    @pasosdejesus/mapa_tiempo_yi_liu": "github:vtamara/mapa_tiempo_yi_liu",
-
-
-Puede que al actualizar su repositorio el cambio no se refleje en la 
-aplicación donde la usa (pues depende de la copia de @node_modules,
-de la copia que queda en el cache ~/.cache/yarn y del condensado sha
-que queda en yarn.lock).  Hemos encontrado útil:
+Haga cambios y publique en github, puede que al actualizar su repositorio
+el cambio no se refleje en la aplicación donde la usa (pues depende de la
+copia de `node_modules`, de la copia que queda en el cache `~/.cache/yarn` 
+y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
 
      yarn cache clean @pasosdejesus/mapa_tiempo_yi_liu
      yarn remove clean @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
      
-En caso de actualizar le agradecemos nos envíe solicitud de cambios (Pull Request).
-
-Por otra parte aún despues de tener una copia actualizada en node_modules hemos
-notado que yarn (al menos hasta la versioń 
 
 
+## 3.2 Publicar cambios en registro npm
 
-# 3.3. Publicar en registro npm
+La publicación requerirá la clave de vtamara@pasosdeJesus.org en el repositorio npm.
 
-Recordar aumentar la versión en `package.json` y ejecutar
-  
+Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión ya publicada.
+
+* Hacer los cambios necesarios.
+* Actualizar depenencias con `yarn upgrade; yarn install` y revisar con `yarn check`
+* Aumentar la versión en `package.json`
+* Compilar con `yarn build;  yarn run transpile`
+* Probar minimamente operación  con `yarn start`
+* Publicar en el registro npm con
+    
     yarn publish
