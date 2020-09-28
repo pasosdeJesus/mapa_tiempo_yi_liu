@@ -18,7 +18,6 @@ import Footer from './Footer'
 import Region from './Region'
 import TransmissionNetwork from './TransmissionNetwork'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
-import us_map from 'js-yaml-loader!../../assets/data/us_map.yml';
 import * as str from '../utils/strings'
 import { updateDarkMode, isoDate } from '../utils/utils'
 import { mapText } from '../utils/map_text'
@@ -35,7 +34,7 @@ const defaultState = {
     fullTree: false
 }
 
-export default class App extends React.Component {
+class App extends Component {
     state = {
         startDate: '2020-01-24',
         endDate: '2020-02-14',
@@ -71,11 +70,9 @@ export default class App extends React.Component {
             })
 
             const { data } = this.state
-
 	    this.getCases(data)
             this.tooltipRebuild()
         })
-    
 
   getCases = (data) => {
        var casesRefact = [];
@@ -83,22 +80,11 @@ export default class App extends React.Component {
       // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
       //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
     	//fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-    	fetch("/sivel2/casos.json?filtro[q]=&filtro[departamento_id]=&filtro[inc_ubicaciones]=2&filtro[inc_ubicaciones]=2&filtro[orden]=ubicacion&filtro[fechaini]=&filtro[fechafin]=&filtro[inc_fecha]=0&filtro[inc_fecha]=1&filtro[presponsable_id]=&filtro[inc_presponsables]=0&filtro[inc_presponsables]=1&filtro[inc_tipificacion]=0&filtro[inc_tipificacion]=1&filtro[nombres]=&filtro[apellidos]=&filtro[inc_victimas]=0&filtro[inc_victimas]=1&filtro[sexo]=&filtro[rangoedad_id]=&filtro[sectorsocial_id]=&filtro[organizacion_id]=&filtro[profesion_id]=&filtro[descripcion]=&filtro[inc_memo]=0&filtro[inc_memo]=1&filtro[conetiqueta1]=true&filtro[etiqueta1]=&filtro[conetiqueta2]=true&filtro[etiqueta2]=&filtro[usuario_id]=&filtro[fechaingini]=&filtro[fechaingfin]=&filtro[codigo]=&filtro[inc_casoid]=0&filtro[inc_casoid]=1&filtro[paginar]=0&filtro[paginar]=1&filtro[disgenera]=reprevista.json&idplantilla=reprevista").then((res) => res.json()).then((res) => {
+    	fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
         console.log("casos: ", res)
         const cases = res;
-                Object.entries(cases).map( (data) => {
-          if(data[1].departamento){
-            //console.log("Casos: ", data[1])
-            var obj = {
-              id: data[0],
-              departamento: data[1].departamento,
-              fecha: data[1].fecha
-            }
-            casesRefact.push(obj);
-          }
-        });
-        console.log("Arreglo de Casos: ", casesRefact)
-          this.changeData(data, casesRefact)
+        console.log("data antes: ", data)
+        this.changeData(data, res["casos"])
         })
   }
 
@@ -108,9 +94,10 @@ export default class App extends React.Component {
        var casesRefact = cas;
 	console.log("Data Obj: ", obj)
 	Object.entries(obj).map( (data) => {
-	      var country = data[0];
+	  var country = data[0];
           if(country == "哥伦比亚" ){
             var countryObj = data[1];
+            var cuentatotal = 0
             Object.entries(countryObj).map ( (item) =>{
               if(typeof item[1] == "object"){
                 if(item[1].ENGLISH){
@@ -120,26 +107,24 @@ export default class App extends React.Component {
                   obj[country][depart].confirmedCount = dateszeros;
                   obj[country][depart].curedCount = dateszeros;
                   obj[country][depart].deadCount = dateszeros;
-                  var count = 0;
+                  var cuenta = 0;
+                  console.log("casesRefact: ", casesRefact)
                   casesRefact.map((casos) => {
-                    //console.log("Casos: ", casos)
-                    if(item[1].ENGLISH.toUpperCase() == casos.departamento){
+                    if(item[1].ENGLISH.toUpperCase() == casos.nombre){
                       let dateCase = casos.fecha;
-                      count++;
-                      var dateNow = {
-                        "2020-07-01": count 
-                      };
-
+                      cuenta += casos.count;
+                      cuentatotal += casos.count
                       if(obj[country][depart].confirmedCount[dateCase]){
                         let total = obj[country][depart].confirmedCount[dateCase] + 1;
                         obj[country][depart].confirmedCount[dateCase] = total;
                       }else{
                         obj[country][depart].confirmedCount[dateCase] = 1;
                       }
-                      obj[country][depart].confirmedCount["2020-07-01"] = count;
+                      obj[country][depart].confirmedCount["2020-07-01"] = cuenta;
                     } 
                   });
                 }
+                obj[country].confirmedCount["2020-07-01"] = cuentatotal;
               }
 
             })
@@ -157,7 +142,6 @@ export default class App extends React.Component {
         this.updateFullDimensions()
         window.addEventListener('resize', this.updateFullDimensions)
     }
-    
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateFullDimensions)
     }
@@ -210,12 +194,6 @@ export default class App extends React.Component {
                 this.mapToggle(str.HONGKONG_MAP)
             } else if (currentMap !== str.CHINA_MAP2) {
                 this.mapToggle(str.CHINA_MAP1)
-            }
-        } else if (newRegion[0] === str.US_ZH) {
-            if (newRegion.length >= 2 && newRegion[1] in us_map) {
-                this.mapToggle(str.US_MAP2)
-            } else {
-                this.mapToggle(str.US_MAP)
             }
         } else if (newRegion[0] === str.ITALY_ZH) {
             if (newRegion.length >= 3) {
@@ -292,9 +270,6 @@ export default class App extends React.Component {
                         <Row>
                             <Col lg={!fullMap ? 7 : 12}>
                                 <div className="header">
-                                    <span className="header-icon" style={{ opacity: dataLoaded ? 1 : 0 }}>
-                                        <p> Aqui va el icono </p>
-                                    </span>
                                     <span
                                         className="header-title"
                                         style={{ letterSpacing: lang === 'es' ? '1px' : 'normal' }}
@@ -406,3 +381,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App
