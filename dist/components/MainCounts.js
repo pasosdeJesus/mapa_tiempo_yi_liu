@@ -63,7 +63,7 @@ var MainCounts = /*#__PURE__*/function (_Component) {
       if (data == null) return /*#__PURE__*/_react["default"].createElement("div", null);
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "counts-wrap"
-      }, !fullPlot && !fullTree && ['confirmedCount', 'deadCount', 'curedCount'].map(function (metric) {
+      }, !fullPlot && !fullTree && ['confirmedCount'].map(function (metric) {
         var count = Object.keys((0, _utils.getDataFromRegion)(data, currentRegion)[metric]).length > 0 ? (0, _utils.getDataFromRegion)(data, currentRegion)[metric][date] : '—';
         var preDate = (0, _utils.previousDay)(date, '2019-09-01', '2050-01-01');
         var preCount = Object.keys((0, _utils.getDataFromRegion)(data, currentRegion)[metric]).length > 0 ? (0, _utils.getDataFromRegion)(data, currentRegion)[metric][preDate] : 0;

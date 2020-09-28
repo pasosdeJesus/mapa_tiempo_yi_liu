@@ -138,7 +138,7 @@ var MapNavBar = /*#__PURE__*/function (_Component) {
         className: "map-nav-bar-wrap ".concat(fullPlot && !_plot_types.plotTypes[plotType].metricChange ? 'grey-out' : '')
       }, /*#__PURE__*/_react["default"].createElement("ul", {
         className: "map-nav-bar"
-      }, ['confirmedCount', 'deadCount', 'curedCount'].map(function (count) {
+      }, ['confirmedCount'].map(function (count) {
         return /*#__PURE__*/_react["default"].createElement("li", {
           key: "map-nav-".concat(count),
           className: count === metric ? 'current' : ''

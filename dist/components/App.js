@@ -45,8 +45,6 @@ var _TransmissionNetwork = _interopRequireDefault(require("./TransmissionNetwork
 
 var _i18n = _interopRequireDefault(require("js-yaml-loader!../../assets/data/i18n.yml"));
 
-var _us_map = _interopRequireDefault(require("js-yaml-loader!../../assets/data/us_map.yml"));
-
 var str = _interopRequireWildcard(require("../utils/strings"));
 
 var _utils = require("../utils/utils");
@@ -101,8 +99,8 @@ var defaultState = {
   fullTree: false
 };
 
-var App = /*#__PURE__*/function (_React$Component) {
-  _inherits(App, _React$Component);
+var App = /*#__PURE__*/function (_Component) {
+  _inherits(App, _Component);
 
   var _super = _createSuper(App);
 
@@ -165,25 +163,14 @@ var App = /*#__PURE__*/function (_React$Component) {
       //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
       //fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
 
-      fetch("/sivel2/casos.json?filtro[q]=&filtro[departamento_id]=&filtro[inc_ubicaciones]=2&filtro[inc_ubicaciones]=2&filtro[orden]=ubicacion&filtro[fechaini]=&filtro[fechafin]=&filtro[inc_fecha]=0&filtro[inc_fecha]=1&filtro[presponsable_id]=&filtro[inc_presponsables]=0&filtro[inc_presponsables]=1&filtro[inc_tipificacion]=0&filtro[inc_tipificacion]=1&filtro[nombres]=&filtro[apellidos]=&filtro[inc_victimas]=0&filtro[inc_victimas]=1&filtro[sexo]=&filtro[rangoedad_id]=&filtro[sectorsocial_id]=&filtro[organizacion_id]=&filtro[profesion_id]=&filtro[descripcion]=&filtro[inc_memo]=0&filtro[inc_memo]=1&filtro[conetiqueta1]=true&filtro[etiqueta1]=&filtro[conetiqueta2]=true&filtro[etiqueta2]=&filtro[usuario_id]=&filtro[fechaingini]=&filtro[fechaingfin]=&filtro[codigo]=&filtro[inc_casoid]=0&filtro[inc_casoid]=1&filtro[paginar]=0&filtro[paginar]=1&filtro[disgenera]=reprevista.json&idplantilla=reprevista").then(function (res) {
+      fetch("/sivel2/casos/cuenta").then(function (res) {
         return res.json();
       }).then(function (res) {
         console.log("casos: ", res);
         var cases = res;
-        Object.entries(cases).map(function (data) {
-          if (data[1].departamento) {
-            //console.log("Casos: ", data[1])
-            var obj = {
-              id: data[0],
-              departamento: data[1].departamento,
-              fecha: data[1].fecha
-            };
-            casesRefact.push(obj);
-          }
-        });
-        console.log("Arreglo de Casos: ", casesRefact);
+        console.log("data antes: ", data);
 
-        _this.changeData(data, casesRefact);
+        _this.changeData(data, res["casos"]);
       });
     };
 
@@ -195,6 +182,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
         if (country == "哥伦比亚") {
           var countryObj = data[1];
+          var cuentatotal = 0;
           Object.entries(countryObj).map(function (item) {
             if (_typeof(item[1]) == "object") {
               if (item[1].ENGLISH) {
@@ -203,15 +191,13 @@ var App = /*#__PURE__*/function (_React$Component) {
                 obj[country][depart].confirmedCount = dateszeros;
                 obj[country][depart].curedCount = dateszeros;
                 obj[country][depart].deadCount = dateszeros;
-                var count = 0;
+                var cuenta = 0;
+                console.log("casesRefact: ", casesRefact);
                 casesRefact.map(function (casos) {
-                  //console.log("Casos: ", casos)
-                  if (item[1].ENGLISH.toUpperCase() == casos.departamento) {
+                  if (item[1].ENGLISH.toUpperCase() == casos.nombre) {
                     var dateCase = casos.fecha;
-                    count++;
-                    var dateNow = {
-                      "2020-07-01": count
-                    };
+                    cuenta += casos.count;
+                    cuentatotal += casos.count;
 
                     if (obj[country][depart].confirmedCount[dateCase]) {
                       var total = obj[country][depart].confirmedCount[dateCase] + 1;
@@ -220,10 +206,12 @@ var App = /*#__PURE__*/function (_React$Component) {
                       obj[country][depart].confirmedCount[dateCase] = 1;
                     }
 
-                    obj[country][depart].confirmedCount["2020-07-01"] = count;
+                    obj[country][depart].confirmedCount["2020-07-01"] = cuenta;
                   }
                 });
               }
+
+              obj[country].confirmedCount["2020-07-01"] = cuentatotal;
             }
           });
         }
@@ -297,12 +285,6 @@ var App = /*#__PURE__*/function (_React$Component) {
           _this.mapToggle(str.HONGKONG_MAP);
         } else if (currentMap !== str.CHINA_MAP2) {
           _this.mapToggle(str.CHINA_MAP1);
-        }
-      } else if (newRegion[0] === str.US_ZH) {
-        if (newRegion.length >= 2 && newRegion[1] in _us_map["default"]) {
-          _this.mapToggle(str.US_MAP2);
-        } else {
-          _this.mapToggle(str.US_MAP);
         }
       } else if (newRegion[0] === str.ITALY_ZH) {
         if (newRegion.length >= 3) {
@@ -454,11 +436,6 @@ var App = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "header"
       }, /*#__PURE__*/_react["default"].createElement("span", {
-        className: "header-icon",
-        style: {
-          opacity: dataLoaded ? 1 : 0
-        }
-      }, /*#__PURE__*/_react["default"].createElement("p", null, " Aqui va el icono ")), /*#__PURE__*/_react["default"].createElement("span", {
         className: "header-title",
         style: {
           letterSpacing: lang === 'es' ? '1px' : 'normal'
@@ -541,6 +518,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return App;
-}(_react["default"].Component);
+}(_react.Component);
 
-exports["default"] = App;
+var _default = App;
+exports["default"] = _default;

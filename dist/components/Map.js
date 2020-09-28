@@ -47,18 +47,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -98,8 +86,7 @@ var Map = /*#__PURE__*/function (_Component) {
       loaded: false,
       cursor: [0, 0],
       clicked: false,
-      showTransmissions: false,
-      usState: null
+      showTransmissions: false
     };
 
     _this.handleGeographyClick = function (region) {
@@ -121,7 +108,7 @@ var Map = /*#__PURE__*/function (_Component) {
       }) : defaultConfig;
     };
 
-    _this.getColorScale = function (isUsState) {
+    _this.getColorScale = function () {
       var _this$props = _this.props,
           data = _this$props.data,
           currentRegion = _this$props.currentRegion,
@@ -131,16 +118,6 @@ var Map = /*#__PURE__*/function (_Component) {
       var currentMap = _maps["default"][_this.props.currentMap];
       var currentScale = scale === 'linear' ? _d3Scale.scaleLinear : _d3Scale.scaleLog;
       var maxCount = currentMap["maxScale_".concat(metric)];
-
-      if (isUsState && metric === 'confirmedCount') {
-        var stateData = (0, _utils.getDataFromRegion)(data, currentRegion.slice(0, 2));
-        maxCount = Math.max.apply(Math, _toConsumableArray(Object.keys(stateData).filter(function (x) {
-          return !['confirmedCount', 'curedCount', 'deadCount', 'ENGLISH'].includes(x);
-        }).map(function (county) {
-          return Math.max.apply(Math, _toConsumableArray(Object.values(stateData[county][metric])));
-        })));
-      }
-
       var mapScale = currentScale().domain([1, maxCount]).clamp(true);
 
       var colorConvert = function colorConvert(x) {
@@ -165,8 +142,8 @@ var Map = /*#__PURE__*/function (_Component) {
       };
     };
 
-    _this.getStrokeColor = function (counts, isUsState) {
-      var _this$getColorScale = _this.getColorScale(isUsState),
+    _this.getStrokeColor = function (counts) {
+      var _this$getColorScale = _this.getColorScale(),
           colorScale = _this$getColorScale.colorScale,
           mapScale = _this$getColorScale.mapScale;
 
@@ -194,23 +171,13 @@ var Map = /*#__PURE__*/function (_Component) {
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
 
-      if (this.props.currentMap !== prevProps.currentMap || this.state.usState !== prevState.usState) {
+      if (this.props.currentMap !== prevProps.currentMap) {
         this.setState({
           loaded: false
         });
         setTimeout(function () {
           _this2.props.tooltipRebuild();
         }, 100);
-      }
-
-      if (this.props.currentMap === str.US_MAP2) {
-        var usState = this.props.currentRegion[1];
-
-        if (usState !== this.state.usState) {
-          this.setState({
-            usState: usState
-          });
-        }
       }
     }
   }, {
@@ -229,16 +196,13 @@ var Map = /*#__PURE__*/function (_Component) {
           mapZoom = _this$props2.mapZoom,
           darkMode = _this$props2.darkMode;
       var lang_map = lang !== 'zh' ? 'en' : 'zh';
-      var isUsState = this.props.currentMap === str.US_MAP2 && this.state.usState != null && this.state.usState in _us_map["default"];
-      var center = isUsState ? _us_map["default"][this.state.usState].center.split(',').map(function (d) {
-        return parseFloat(d);
-      }) : currentMap.center.split(',').map(function (d) {
+      var center = currentMap.center.split(',').map(function (d) {
         return parseFloat(d);
       });
-      var scale = isUsState ? _us_map["default"][this.state.usState].scale : currentMap.scale;
-      var projection = isUsState ? 'geoMercator' : currentMap.projection;
+      var scale = currentMap.scale;
+      var projection = currentMap.projection;
 
-      var _this$getColorScale2 = this.getColorScale(isUsState),
+      var _this$getColorScale2 = this.getColorScale(),
           colorScale = _this$getColorScale2.colorScale;
 
       var greyStrokeColor = darkMode ? 'var(--primary-color-10)' : 'var(--grey)';
@@ -303,8 +267,8 @@ var Map = /*#__PURE__*/function (_Component) {
         center: center,
         minZoom: 0.2,
         maxZoom: 5
-      }, ![str.WORLD_MAP, str.US_MAP].includes(this.props.currentMap) && /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geographies, {
-        geography: "/maps/".concat(this.props.currentMap === str.US_MAP2 ? 'USA' : this.props.currentMap === str.HONGKONG_MAP ? 'CHN_1' : 'WORLD', ".json"),
+      }, ![str.WORLD_MAP].includes(this.props.currentMap) && /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geographies, {
+        geography: "/maps/WORLD.json",
         onMouseEnter: function onMouseEnter() {
           if (!_this3.state.loaded) {
             _this3.setState({
@@ -324,11 +288,10 @@ var Map = /*#__PURE__*/function (_Component) {
             if (region && region[metric] && region[metric][date]) counts = region[metric][date];
           }
 
-          var backgroundMap = _this3.props.currentMap === str.US_MAP2 ? str.US_MAP : _this3.props.currentMap === str.HONGKONG_MAP ? str.CHINA_MAP1 : str.WORLD_MAP;
+          var backgroundMap = str.WORLD_MAP;
           var name = geo.properties[_maps["default"][backgroundMap].name_key[lang_map]];
           var isCurrentCountryOrState = backgroundMap === str.WORLD_MAP ? geo.properties.CHINESE_NAME === currentRegion[0] : geo.properties.CHINESE_NAME === currentRegion[1];
           if (isCurrentCountryOrState) return /*#__PURE__*/_react["default"].createElement("div", null);
-          if (backgroundMap === str.US_MAP && currentRegion.length === 1) return /*#__PURE__*/_react["default"].createElement("div", null);
           return /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geography, {
             className: "map-geography",
             key: geo.rsmKey,
@@ -392,9 +355,7 @@ var Map = /*#__PURE__*/function (_Component) {
             isParentRegion = true;
           }
 
-          var strokeColor = counts === 0 ? greyStrokeColor : _this3.getStrokeColor(counts, isUsState); // US map
-
-          if (_this3.props.currentMap === str.US_MAP2 && !isParentRegion) return /*#__PURE__*/_react["default"].createElement("div", null);
+          var strokeColor = counts === 0 ? greyStrokeColor : _this3.getStrokeColor(counts);
           return /*#__PURE__*/_react["default"].createElement(_react.Fragment, {
             key: "fragment-".concat(geo.rsmKey)
           }, /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geography, {
@@ -433,42 +394,7 @@ var Map = /*#__PURE__*/function (_Component) {
             orientation: ['diagonal']
           }));
         });
-      }), this.props.currentMap === str.WORLD_MAP && this.state.showTransmissions && _transmissions["default"].filter(function (trans) {
-        return (0, _utils.parseDate)(trans.date) <= (0, _utils.parseDate)(date);
-      }).map(function (trans, i) {
-        return /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Line, {
-          keys: "transmission-".concat(i),
-          from: _transmissions_coord["default"][trans.from].split(',').map(function (c) {
-            return parseFloat(c);
-          }),
-          to: _transmissions_coord["default"][trans.to].split(',').map(function (c) {
-            return parseFloat(c);
-          }),
-          stroke: darkMode ? 'rgba(222,73,104,0.9)' : 'rgba(222, 73, 104, 0.5)',
-          strokeWidth: 1,
-          strokeLinecap: "round",
-          style: {
-            pointerEvents: 'none'
-          }
-        });
-      }), [str.WORLD_MAP, str.CHINA_MAP1, str.CHINA_MAP2].includes(this.props.currentMap) && /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Marker, {
-        key: 'wuhan',
-        coordinates: [114.2, 30.3]
-      }, /*#__PURE__*/_react["default"].createElement("g", {
-        fill: "none",
-        stroke: "var(--primary-color-4)",
-        strokeWidth: "2",
-        pointerEvents: "none",
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        transform: "translate(-12, -24)"
-      }, /*#__PURE__*/_react["default"].createElement("circle", {
-        cx: "12",
-        cy: "10",
-        r: "3"
-      }), /*#__PURE__*/_react["default"].createElement("path", {
-        d: "M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"
-      }))))));
+      }), ")}")));
     }
   }]);
 
