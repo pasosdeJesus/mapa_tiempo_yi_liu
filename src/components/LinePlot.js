@@ -3,7 +3,6 @@ import { ResponsiveLine } from '@nivo/line'
 import { isMobile, isIPad13 } from 'react-device-detect'
 import { parseDate } from '../utils/utils'
 import * as str from '../utils/strings'
-import us_map from 'js-yaml-loader!../../assets/data/us_map.yml';
 
 export default class LinePlot extends Component {
     render() {
@@ -24,6 +23,7 @@ export default class LinePlot extends Component {
             currentMap
         } = this.props
 
+
         if (plotParameters.type !== 'line') return <div />
 
         return (
@@ -37,9 +37,7 @@ export default class LinePlot extends Component {
                 }}
                 theme={plotTheme}
                 animate={
-                    fullPlot ||
-                    currentMap !== str.US_MAP2 ||
-                    (currentMap === str.US_MAP2 && currentRegion.length >= 2 && currentRegion[1] in us_map)
+                    fullPlot
                 }
                 data={plotDataAll.plotData}
                 colors={(d) => d.color}

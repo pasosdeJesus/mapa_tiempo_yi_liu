@@ -74,7 +74,6 @@ export default class MapNavBar extends Component {
                         <DropdownToggle
                             className="map-toggle-button"
                             tag="span"
-                            data-toggle="dropdown"
                             aria-expanded={this.state.dropdownOpen}
                         >
                             <FiMap size={14} style={{ marginRight: 10 }} />

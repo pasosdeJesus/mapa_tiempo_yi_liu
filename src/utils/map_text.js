@@ -56,12 +56,6 @@ export const mapText = {
         flagCode: 'de',
         continent: i18n.EUROPE
     },
-    FRA: {
-        title: i18n.FRANCE_MAP,
-        regionName: str.FRANCE_ZH,
-        flagCode: 'fr',
-        continent: i18n.EUROPE
-    },
     US: {
         title: i18n.US_MAP,
         regionName: str.US_ZH,

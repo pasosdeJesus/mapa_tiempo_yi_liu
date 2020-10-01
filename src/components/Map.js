@@ -9,9 +9,6 @@ import { FaShip } from 'react-icons/fa'
 import Toggle from 'react-toggle'
 import 'react-toggle/style.css'
 import maps from 'js-yaml-loader!../../assets/data/maps.yml';
-import us_map from 'js-yaml-loader!../../assets/data/us_map.yml';
-import transmissions from 'js-yaml-loader!../../assets/data/transmissions.yml';
-import coord from 'js-yaml-loader!../../assets/data/transmissions_coord.yml';
 import { getDataFromRegion, parseDate } from '../utils/utils'
 import * as str from '../utils/strings'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
@@ -113,17 +110,6 @@ class Map extends Component {
 
         return (
             <Fragment>
-                {this.props.currentMap === str.WORLD_MAP && (
-                    <div className="map-transmission-toggle-wrap">
-                        <Toggle
-                            className="map-transmission-toggle"
-                            defaultChecked={this.state.showTransmissions}
-                            onChange={() => this.setState({ showTransmissions: !this.state.showTransmissions })}
-                            icons={false}
-                        />
-                        <span>{i18n.TRANSMISSIONS[this.props.lang]}</span>
-                    </div>
-                )}
                 <ComposableMap
                     projection={projection}
 
@@ -173,7 +159,7 @@ class Map extends Component {
                     >
                         {![ str.WORLD_MAP ].includes(this.props.currentMap) && (
                             <Geographies
-                                geography={`/maps/WORLD.json`}
+                                geography={`/maps/COLOMBIAWORLD.json`}
                                 onMouseEnter={() => {
                                     if (!this.state.loaded) {
                                         this.setState({ loaded: true })

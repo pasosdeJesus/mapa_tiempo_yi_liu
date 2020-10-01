@@ -39,9 +39,8 @@ export default class NavBar extends Component {
             <div className="nav-bar">
                 <UncontrolledDropdown>
                     <DropdownToggle
-                        tag="div"
+                        tag="span"
                         className="nav-bar-icon"
-                        data-toggle="dropdown"
                         data-tip={i18n.LANGUAGE_HELP_TEXT[lang]}
                     >
                         {i18n.LANGUAGE[lang]}
