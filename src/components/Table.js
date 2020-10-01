@@ -124,18 +124,6 @@ export default class Table extends Component {
                 Header: i18n.CONFIRMED[lang],
                 Cell: ({ row }) => (!isNaN(row.original.confirmedCount) ? row.original.confirmedCount : str.EMPTY),
                 accessor: 'confirmedCount'
-            },
-            {
-                id: 'table-deaths',
-                Header: i18n.DEATHS[lang],
-                Cell: ({ row }) => (!isNaN(row.original.deadCount) ? row.original.deadCount : str.EMPTY),
-                accessor: 'deadCount'
-            },
-            {
-                id: 'table-recovery',
-                Header: i18n.RECOVERED[lang],
-                Cell: ({ row }) => (!isNaN(row.original.curedCount) ? row.original.curedCount : str.EMPTY),
-                accessor: 'curedCount'
             }
         ]
 

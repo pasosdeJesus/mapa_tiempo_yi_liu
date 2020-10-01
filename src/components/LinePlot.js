@@ -161,7 +161,7 @@ export default class LinePlot extends Component {
                     if (isMobile || isIPad13) return
                     if (!plotParameters.subregions || serieId == null || data.noClick) return
                     this.props.regionToggle(
-                        currentRegion.length === 1 && currentRegion[0] === str.GLOBAL_ZH
+                        currentRegion.length === 1 && currentRegion[0] === str.COLOMBIA_ZH
                             ? [ serieId ]
                             : [ ...currentRegion, serieId ]
                     )
