@@ -200,52 +200,36 @@ var Table = /*#__PURE__*/function (_Component) {
           return !isNaN(row.original.confirmedCount) ? row.original.confirmedCount : str.EMPTY;
         },
         accessor: 'confirmedCount'
-      }, {
-        id: 'table-deaths',
-        Header: _i18n["default"].DEATHS[lang],
-        Cell: function Cell(_ref5) {
-          var row = _ref5.row;
-          return !isNaN(row.original.deadCount) ? row.original.deadCount : str.EMPTY;
-        },
-        accessor: 'deadCount'
-      }, {
-        id: 'table-recovery',
-        Header: _i18n["default"].RECOVERED[lang],
-        Cell: function Cell(_ref6) {
-          var row = _ref6.row;
-          return !isNaN(row.original.curedCount) ? row.original.curedCount : str.EMPTY;
-        },
-        accessor: 'curedCount'
       }];
       if (fullTree) columns = [].concat(_toConsumableArray(columns), [{
         id: 'table-active',
         Header: _i18n["default"].ACTIVE[lang],
-        Cell: function Cell(_ref7) {
-          var row = _ref7.row;
+        Cell: function Cell(_ref5) {
+          var row = _ref5.row;
           return !isNaN(row.original.active) ? row.original.active : str.EMPTY;
         },
         accessor: 'active'
       }, {
         id: 'table-newConfirmed',
         Header: _i18n["default"].NEW_CONFIRMED[lang],
-        Cell: function Cell(_ref8) {
-          var row = _ref8.row;
+        Cell: function Cell(_ref6) {
+          var row = _ref6.row;
           return !isNaN(row.original.newConfirmed) ? row.original.newConfirmed : str.EMPTY;
         },
         accessor: 'newConfirmed'
       }, {
         id: 'table-newDead',
         Header: _i18n["default"].NEW_DEATHS[lang],
-        Cell: function Cell(_ref9) {
-          var row = _ref9.row;
+        Cell: function Cell(_ref7) {
+          var row = _ref7.row;
           return !isNaN(row.original.newDead) ? row.original.newDead : str.EMPTY;
         },
         accessor: 'newDead'
       }, {
         id: 'table-fatalityRate',
         Header: _i18n["default"].FATALITY_RATE[lang],
-        Cell: function Cell(_ref10) {
-          var row = _ref10.row;
+        Cell: function Cell(_ref8) {
+          var row = _ref8.row;
           return !isNaN(row.original.fatalityRate) ? (row.original.fatalityRate * 100).toFixed(2) + '%' : str.EMPTY;
         },
         accessor: 'fatalityRate',
@@ -253,8 +237,8 @@ var Table = /*#__PURE__*/function (_Component) {
       }, {
         id: 'table-recoveryRate',
         Header: _i18n["default"].RECOVERY_RATE[lang],
-        Cell: function Cell(_ref11) {
-          var row = _ref11.row;
+        Cell: function Cell(_ref9) {
+          var row = _ref9.row;
           return !isNaN(row.original.recoveryRate) ? (row.original.recoveryRate * 100).toFixed(2) + '%' : str.EMPTY;
         },
         accessor: 'recoveryRate',

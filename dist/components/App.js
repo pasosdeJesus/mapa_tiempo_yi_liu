@@ -41,8 +41,6 @@ var _Footer = _interopRequireDefault(require("./Footer"));
 
 var _Region = _interopRequireDefault(require("./Region"));
 
-var _TransmissionNetwork = _interopRequireDefault(require("./TransmissionNetwork"));
-
 var _i18n = _interopRequireDefault(require("js-yaml-loader!../../assets/data/i18n.yml"));
 
 var str = _interopRequireWildcard(require("../utils/strings"));
@@ -88,7 +86,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 var defaultState = {
-  currentMap: 'WORLD',
+  currentMap: 'COL',
   metric: 'confirmedCount',
   currentRegion: [str.COLOMBIA_ZH],
   playing: false,
@@ -116,10 +114,10 @@ var App = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
     _this.state = _objectSpread({
       startDate: '2020-01-24',
-      endDate: '2020-02-14',
-      date: '2020-02-14',
-      tempDate: '2020-02-14',
-      plotDates: ['2020-01-24', '2020-02-14'],
+      endDate: '2020-06-25',
+      date: '2020-06-25',
+      tempDate: '2020-06-25',
+      plotDates: ['2020-01-24', '2020-06-25'],
       data: null,
       dataLoaded: false,
       lang: 'es',
@@ -139,7 +137,7 @@ var App = /*#__PURE__*/function (_Component) {
       return fetch('/sivel2/casos/infomapa/datoscovid').then(function (res) {
         return res.json();
       }).then(function (res) {
-        var latest = Object.keys(res[str.GLOBAL_ZH].confirmedCount).pop();
+        var latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop();
 
         _this.setState({
           data: res,
@@ -192,7 +190,6 @@ var App = /*#__PURE__*/function (_Component) {
                 obj[country][depart].curedCount = dateszeros;
                 obj[country][depart].deadCount = dateszeros;
                 var cuenta = 0;
-                console.log("casesRefact: ", casesRefact);
                 casesRefact.map(function (casos) {
                   if (item[1].ENGLISH.toUpperCase() == casos.nombre) {
                     var dateCase = casos.fecha;
@@ -276,33 +273,12 @@ var App = /*#__PURE__*/function (_Component) {
       });
 
       if (!mapChange) return;
-      if (currentMap === str.TRANSMISSION) return;
+      var map = Object.keys(_map_text.mapText).find(function (x) {
+        return _map_text.mapText[x].regionName === newRegion[0];
+      });
+      map = map != null ? map : str.WORLD_MAP;
 
-      if (newRegion[0] === str.CHINA_ZH) {
-        if (newRegion.length >= 4) {
-          _this.mapToggle(str.CHINA_MAP2);
-        } else if (newRegion.length >= 2 && newRegion[1] === str.HONGKONG_ZH) {
-          _this.mapToggle(str.HONGKONG_MAP);
-        } else if (currentMap !== str.CHINA_MAP2) {
-          _this.mapToggle(str.CHINA_MAP1);
-        }
-      } else if (newRegion[0] === str.ITALY_ZH) {
-        if (newRegion.length >= 3) {
-          _this.mapToggle(str.ITALY_MAP2);
-        } else if (currentMap !== str.ITALY_MAP2) {
-          _this.mapToggle(str.ITALY_MAP);
-        }
-      } else if (newRegion[0] === str.INTL_CONVEYANCE_ZH) {
-        _this.mapToggle(str.JAPAN_MAP);
-      } else {
-        var map = Object.keys(_map_text.mapText).find(function (x) {
-          return _map_text.mapText[x].regionName === newRegion[0];
-        });
-        map = map != null ? map : str.WORLD_MAP;
-        if (map === str.WORLD_MAP && currentMap === str.EUROPE_MAP) map = str.EUROPE_MAP;
-
-        _this.mapToggle(map);
-      }
+      _this.mapToggle(map);
     };
 
     _this.playingToggle = function () {
@@ -390,9 +366,7 @@ var App = /*#__PURE__*/function (_Component) {
       return _reactTooltip["default"].rebuild();
     };
 
-    _this.changeDataJSON = function (data) {
-      console.log("Data Two: ", data);
-    };
+    _this.changeDataJSON = function (data) {};
 
     return _this;
   }
@@ -461,10 +435,7 @@ var App = /*#__PURE__*/function (_Component) {
             height: !fullMap ? _this2.state.mapDimensions.width * 3 / 4 : _this2.state.fullDimensions.height,
             width: !fullMap ? '100%' : _this2.state.fullDimensions.width
           }
-        }, currentMap === str.TRANSMISSION && /*#__PURE__*/_react["default"].createElement(_TransmissionNetwork["default"], _extends({}, _this2.state, {
-          regionToggle: _this2.regionToggle,
-          tooltipRebuild: _this2.tooltipRebuild
-        })), currentMap !== str.TRANSMISSION && /*#__PURE__*/_react["default"].createElement(_Map["default"], _extends({}, _this2.state, {
+        }, currentMap !== str.TRANSMISSION && /*#__PURE__*/_react["default"].createElement(_Map["default"], _extends({}, _this2.state, {
           handleMapZoomChange: _this2.handleMapZoomChange,
           mapToggle: _this2.mapToggle,
           regionToggle: _this2.regionToggle,

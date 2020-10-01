@@ -165,11 +165,6 @@ var Plot = /*#__PURE__*/function (_Component) {
       var currentRegionIsGlobal = currentRegion.length === 1 && currentRegion[0] === str.GLOBAL_ZH;
       var hasSubregions = Object.keys((0, _utils.getDataFromRegion)(data, currentRegion)).length > 4 || currentRegionIsGlobal;
 
-      if (currentRegionIsGlobal && this.props.plotType === 'plot_one_vs_rest') {
-        this.props.handlePlotTypeChange('plot_basic');
-        this.setSpecificPlotType('plot_basic', this.state.plotDetails);
-      }
-
       if (!hasSubregions && _plot_types.plotTypes[this.props.plotType].subregions) {
         this.props.handlePlotTypeChange('plot_basic');
         this.setSpecificPlotType('plot_basic', this.state.plotDetails);

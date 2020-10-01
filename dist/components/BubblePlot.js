@@ -74,7 +74,7 @@ var BubblePlot = /*#__PURE__*/function (_Component) {
     };
 
     _this.handleNodeClick = function (node) {
-      var region = node.path === str.GLOBAL_ZH ? [node.path] : node.path.split('.').reverse().slice(1);
+      var region = node.path === str.COLOMBIA_ZH ? [node.path] : node.path.split('.').reverse().slice(1);
 
       _this.props.regionToggle(region);
     };
@@ -116,26 +116,17 @@ var BubblePlot = /*#__PURE__*/function (_Component) {
           fullTree = _this$props.fullTree;
       if (data == null) return /*#__PURE__*/_react["default"].createElement("div", null);
       var plotData = {
-        name: str.GLOBAL_ZH,
-        displayName: lang === 'en' ? str.GLOBAL_EN : str.GLOBAL_ZH,
-        confirmedCount: data[str.GLOBAL_ZH].confirmedCount[date],
-        deadCount: data[str.GLOBAL_ZH].deadCount[date],
-        curedCount: data[str.GLOBAL_ZH].curedCount[date],
+        name: str.COLOMBIA_ZH,
+        displayName: lang === 'en' ? str.GLOBAL_EN : str.COLOMBIA_ZH,
+        confirmedCount: data[str.COLOMBIA_ZH].confirmedCount[date],
         children: (0, _utils.generateTreeData)(data, date, lang)
       };
-      var currentNodePath = currentRegion[0] === str.GLOBAL_ZH ? str.GLOBAL_ZH : [str.GLOBAL_ZH].concat(_toConsumableArray(currentRegion)).reverse().join('.'); // TODO: Node does not exist when count is 0. Need to find the parent node that has non-zero count.
+      var currentNodePath = currentRegion[0] === str.COLOMBIA_ZH ? str.COLOMBIA_ZH : [str.COLOMBIA_ZH].concat(_toConsumableArray(currentRegion)).reverse().join('.'); // TODO: Node does not exist when count is 0. Need to find the parent node that has non-zero count.
 
       var currentData = (0, _utils.getDataFromRegion)(data, currentRegion);
       var count = currentData[metric][date];
-      if (count == null || count === 0 || currentRegion[0] === str.CHINA_ZH && currentRegion.length > 3 || currentRegion[0] === str.US_ZH && currentRegion.length === 3 || currentRegion[0] === str.UK_ZH && currentRegion.length > 3 || currentRegion[0] === str.ITALY_ZH && currentRegion.length > 2 || currentRegion[0] === str.LATVIA_ZH && currentRegion.length > 2 || currentRegion[0] === str.PHILIPPINES_ZH && currentRegion.length > 2 || currentRegion[0] === str.SLOVENIA_ZH && currentRegion.length > 2) currentNodePath = [str.GLOBAL_ZH].concat(_toConsumableArray(currentRegion.slice(0, currentRegion.length - 1))).reverse().join('.');
-      var displayNodePath = Object.keys(currentData).length > 4 ? currentNodePath : currentRegion[0] === str.GLOBAL_ZH ? str.GLOBAL_ZH : [str.GLOBAL_ZH].concat(_toConsumableArray(currentRegion.slice(0, currentRegion.length - 1))).reverse().join('.');
-      if (currentRegion[0] === str.US_ZH && currentRegion.length > 1) displayNodePath = [str.GLOBAL_ZH, str.US_ZH].reverse().join('.');
-      if (currentRegion[0] === str.UK_ZH && currentRegion.length > 2) displayNodePath = [str.GLOBAL_ZH].concat(_toConsumableArray(currentRegion.slice(0, 2))).reverse().join('.');
-      if (currentRegion[0] === str.CHINA_ZH && currentRegion.length > 2) displayNodePath = [str.GLOBAL_ZH].concat(_toConsumableArray(currentRegion.slice(0, 2))).reverse().join('.');
-      if (currentRegion[0] === str.ITALY_ZH && currentRegion.length > 1) displayNodePath = [str.GLOBAL_ZH, str.ITALY_ZH].reverse().join('.');
-      if (currentRegion[0] === str.LATVIA_ZH && currentRegion.length > 1) displayNodePath = [str.GLOBAL_ZH, str.LATVIA_ZH].reverse().join('.');
-      if (currentRegion[0] === str.PHILIPPINES_ZH && currentRegion.length > 1) displayNodePath = [str.GLOBAL_ZH, str.PHILIPPINES_ZH].reverse().join('.');
-      if (currentRegion[0] === str.SLOVENIA_ZH && currentRegion.length > 1) displayNodePath = [str.GLOBAL_ZH, str.SLOVENIA_ZH].reverse().join('.');
+      if (count == null || count === 0) currentNodePath = [str.COLOMBIA_ZH].concat(_toConsumableArray(currentRegion.slice(0, currentRegion.length - 1))).reverse().join('.');
+      var displayNodePath = Object.keys(currentData).length > 4 ? currentNodePath : currentRegion[0] === str.COLOMBIA_ZH ? str.COLOMBIA_ZH : [str.COLOMBIA_ZH].concat(_toConsumableArray(currentRegion.slice(0, currentRegion.length - 1))).reverse().join('.');
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "bubble-plot-wrap"
       }, /*#__PURE__*/_react["default"].createElement(_circlePacking.ResponsiveBubble, {

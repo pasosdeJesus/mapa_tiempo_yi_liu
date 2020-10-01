@@ -114,7 +114,6 @@ var PlotSelector = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownToggle, {
         tag: "span",
         className: "line-plot-title",
-        "data-toggle": "dropdown",
         "aria-expanded": this.state.dropdownOpen
       }, /*#__PURE__*/_react["default"].createElement("span", null, plotParameters.text[lang]), /*#__PURE__*/_react["default"].createElement(_md.MdArrowDropDownCircle, {
         size: 20,

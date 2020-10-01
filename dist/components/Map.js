@@ -27,12 +27,6 @@ require("react-toggle/style.css");
 
 var _maps = _interopRequireDefault(require("js-yaml-loader!../../assets/data/maps.yml"));
 
-var _us_map = _interopRequireDefault(require("js-yaml-loader!../../assets/data/us_map.yml"));
-
-var _transmissions = _interopRequireDefault(require("js-yaml-loader!../../assets/data/transmissions.yml"));
-
-var _transmissions_coord = _interopRequireDefault(require("js-yaml-loader!../../assets/data/transmissions_coord.yml"));
-
 var _utils = require("../utils/utils");
 
 var str = _interopRequireWildcard(require("../utils/strings"));
@@ -206,18 +200,7 @@ var Map = /*#__PURE__*/function (_Component) {
           colorScale = _this$getColorScale2.colorScale;
 
       var greyStrokeColor = darkMode ? 'var(--primary-color-10)' : 'var(--grey)';
-      return /*#__PURE__*/_react["default"].createElement(_react.Fragment, null, this.props.currentMap === str.WORLD_MAP && /*#__PURE__*/_react["default"].createElement("div", {
-        className: "map-transmission-toggle-wrap"
-      }, /*#__PURE__*/_react["default"].createElement(_reactToggle["default"], {
-        className: "map-transmission-toggle",
-        defaultChecked: this.state.showTransmissions,
-        onChange: function onChange() {
-          return _this3.setState({
-            showTransmissions: !_this3.state.showTransmissions
-          });
-        },
-        icons: false
-      }), /*#__PURE__*/_react["default"].createElement("span", null, _i18n["default"].TRANSMISSIONS[this.props.lang])), /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.ComposableMap, {
+      return /*#__PURE__*/_react["default"].createElement(_react.Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.ComposableMap, {
         projection: projection,
         projectionConfig: {
           scale: scale,

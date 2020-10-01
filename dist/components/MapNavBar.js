@@ -151,7 +151,6 @@ var MapNavBar = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownToggle, {
         className: "map-toggle-button",
         tag: "span",
-        "data-toggle": "dropdown",
         "aria-expanded": this.state.dropdownOpen
       }, /*#__PURE__*/_react["default"].createElement(_fi.FiMap, {
         size: 14,
@@ -173,7 +172,7 @@ var MapNavBar = /*#__PURE__*/function (_Component) {
             }
           }
         }
-      }, ['Global', 'Asia', 'Europe', 'North America', 'South America', 'Oceania', 'Africa', null].map(function (continent) {
+      }, ['South America', null].map(function (continent) {
         return Object.keys(_map_text.mapText).filter(function (map) {
           return _map_text.mapText[map].continent === continent || _map_text.mapText[map].continent && _map_text.mapText[map].continent['en'] === continent;
         }).map(function (map, idx) {

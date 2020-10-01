@@ -112,53 +112,6 @@ var plotTypes = {
     movingAverage: true,
     text: _i18n["default"].CASES
   },
-  plot_fatality_recovery: {
-    subregions: false,
-    metricChange: false,
-    statsChange: false,
-    scaleChange: false,
-    movingAverage: true,
-    text: _i18n["default"].FATALITY_RECOVERY_RATE
-  },
-  plot_growth: {
-    subregions: false,
-    metricChange: true,
-    statsChange: true,
-    scaleChange: false,
-    movingAverage: true,
-    text: _i18n["default"].GROWTH_RATE
-  },
-  plot_one_vs_rest: {
-    subregions: false,
-    metricChange: true,
-    statsChange: true,
-    scaleChange: true,
-    movingAverage: true,
-    text: _i18n["default"].ONE_VS_REST
-  },
-  plot_fatality_line: {
-    subregions: false,
-    metricChange: false,
-    statsChange: false,
-    scaleChange: false,
-    text: _i18n["default"].FATALITY_LINE
-  },
-  plot_doubling_time: {
-    subregions: false,
-    metricChange: true,
-    statsChange: false,
-    scaleChange: false,
-    movingAverage: true,
-    text: _i18n["default"].CASE_DOUBLING_TIME
-  },
-  plot_r0: {
-    subregions: false,
-    metricChange: false,
-    statsChange: false,
-    scaleChange: false,
-    movingAverage: true,
-    text: _i18n["default"].ESTIMATED_RO
-  },
   plot_ranking: {
     subregions: true,
     metricChange: true,
@@ -182,26 +135,12 @@ var plotTypes = {
     movingAverage: true,
     text: _i18n["default"].SUBREGION_SHIFTED
   },
-  plot_subregion_stream: {
-    subregions: true,
-    metricChange: true,
-    statsChange: true,
-    scaleChange: false,
-    text: _i18n["default"].SUBREGION_STREAM
-  },
   plot_subregion_active_stream: {
     subregions: false,
     metricChange: false,
     statsChange: false,
     scaleChange: false,
     text: _i18n["default"].SUBREGION_ACTIVE_STREAM
-  },
-  plot_subregion_fatality: {
-    subregions: true,
-    metricChange: false,
-    statsChange: false,
-    scaleChange: false,
-    text: _i18n["default"].SUBREGION_FATALITY
   }
 };
 exports.plotTypes = plotTypes;

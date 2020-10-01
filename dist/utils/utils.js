@@ -157,10 +157,7 @@ var generateTreeData = function generateTreeData(obj, date, lang) {
         fatalityRate: newdata.deadCount / newdata.confirmedCount,
         recoveryRate: newdata.curedCount / newdata.confirmedCount
       });
-    } // remove some regions for the simplicity of bubble plot
-
-
-    if (simplified && (k === str.LONDON_EN || obj.ENGLISH === str.NETHERLANDS_EN && k === str.NETHERLANDS_ZH || obj.ENGLISH === str.MAINLAND_CHINA_EN || obj.ENGLISH === str.ITALY_EN || obj.ENGLISH === str.PHILIPPINES_EN || obj.ENGLISH === str.LATVIA_EN || obj.ENGLISH === str.SLOVENIA_EN || obj.ENGLISH === str.US_EN)) return newdata;
+    }
 
     if (Object.keys(v).length > 4) {
       newdata[childrenLabel] = generateTreeData(v, date, lang, simplified, childrenLabel, sortBy, currentRegion, moreCounts);

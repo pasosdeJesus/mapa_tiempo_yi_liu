@@ -15,10 +15,6 @@ var _utils = require("../utils/utils");
 
 var str = _interopRequireWildcard(require("../utils/strings"));
 
-var _us_map = _interopRequireDefault(require("js-yaml-loader!../../assets/data/us_map.yml"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -103,7 +99,7 @@ var LinePlot = /*#__PURE__*/function (_Component) {
           left: 50
         }, plotParameters.margin),
         theme: plotTheme,
-        animate: fullPlot || currentMap !== str.US_MAP2 || currentMap === str.US_MAP2 && currentRegion.length >= 2 && currentRegion[1] in _us_map["default"],
+        animate: fullPlot,
         data: plotDataAll.plotData,
         colors: function colors(d) {
           return d.color;
@@ -192,7 +188,7 @@ var LinePlot = /*#__PURE__*/function (_Component) {
           if (_reactDeviceDetect.isMobile || _reactDeviceDetect.isIPad13) return;
           if (!plotParameters.subregions || serieId == null || data.noClick) return;
 
-          _this.props.regionToggle(currentRegion.length === 1 && currentRegion[0] === str.GLOBAL_ZH ? [serieId] : [].concat(_toConsumableArray(currentRegion), [serieId]));
+          _this.props.regionToggle(currentRegion.length === 1 && currentRegion[0] === str.COLOMBIA_ZH ? [serieId] : [].concat(_toConsumableArray(currentRegion), [serieId]));
         }
       });
     }

@@ -215,17 +215,7 @@ var Region = /*#__PURE__*/function (_Component) {
       var region = _toConsumableArray(new Set(currentRegion));
 
       if (lang === 'zh') {
-        region = region.join(''); // China
-
-        region = region !== str.CHINA_ZH ? region.replace(str.CHINA_ZH, '') : str.CHINA_ZH;
-        region = region !== str.INTL_CONVEYANCE_ZH ? region.replace(str.INTL_CONVEYANCE_ZH, '') : str.INTL_CONVEYANCE_ZH;
-        region = region !== str.MAINLAND_CHINA_ZH ? region.replace(str.MAINLAND_CHINA_ZH, '') : str.MAINLAND_CHINA_ZH; // France
-
-        region = region !== "".concat(str.FRANCE_ZH).concat(str.METRO_FRANCE_ZH) ? region.replace(str.METRO_FRANCE_ZH, '') : str.METRO_FRANCE_ZH;
-        region = region !== "".concat(str.FRANCE_ZH).concat(str.OVERSEAS_FRANCE_ZH) ? region.replace("".concat(str.FRANCE_ZH).concat(str.OVERSEAS_FRANCE_ZH), '') : "".concat(str.FRANCE_ZH).concat(str.OVERSEAS_FRANCE_ZH); // UK
-
-        region = region !== "".concat(str.UK_ZH).concat(str.OVERSEAS_TERRITORIES_ZH) ? region.replace("".concat(str.UK_ZH).concat(str.OVERSEAS_TERRITORIES_ZH), '') : "".concat(str.UK_ZH).concat(str.OVERSEAS_TERRITORIES_ZH);
-        region = region !== "".concat(str.UK_ZH).concat(str.CROWN_DEPENDENCIES_ZH) ? region.replace("".concat(str.UK_ZH).concat(str.CROWN_DEPENDENCIES_ZH), '') : "".concat(str.UK_ZH).concat(str.CROWN_DEPENDENCIES_ZH);
+        region = region.join('');
         return region;
       } else {
         if (data == null) return;
@@ -237,21 +227,7 @@ var Region = /*#__PURE__*/function (_Component) {
         });
 
         englishRegion = _toConsumableArray(new Set(englishRegion));
-        region = englishRegion.reverse().join(', '); // China
-
-        region = region !== str.CHINA_EN ? region.replace(", ".concat(str.CHINA_EN), '') : str.CHINA_EN;
-        region = region !== str.MAINLAND_CHINA_EN ? region.replace(", ".concat(str.MAINLAND_CHINA_EN), '') : str.MAINLAND_CHINA_EN; // France
-
-        region = region !== "".concat(str.METRO_FRANCE_EN, ", ").concat(str.FRANCE_EN) ? region.replace(", ".concat(str.METRO_FRANCE_EN), '') : str.METRO_FRANCE_EN;
-        region = region !== "".concat(str.OVERSEAS_FRANCE_EN, ", ").concat(str.FRANCE_EN) ? region.replace(", ".concat(str.OVERSEAS_FRANCE_EN, ", ").concat(str.FRANCE_EN), '') : str.OVERSEAS_FRANCE_EN; // Cruise ship
-
-        region = region !== str.INTL_CONVEYANCE_EN ? region.replace(", ".concat(str.INTL_CONVEYANCE_EN), '') : str.INTL_CONVEYANCE_EN; // USA
-
-        region = region !== str.US_EN ? region.replace(str.US_EN, 'US') : str.US_EN; // UK
-
-        region = region !== str.UK_EN ? region.replace(str.UK_EN, 'UK') : str.UK_EN;
-        region = region !== "".concat(str.OVERSEAS_TERRITORIES_EN, ", ").concat(str.UK_ABBR_EN) ? region.replace(", ".concat(str.OVERSEAS_TERRITORIES_EN, ", ").concat(str.UK_ABBR_EN), '') : str.OVERSEAS_TERRITORIES_EN;
-        region = region !== "".concat(str.CROWN_DEPENDENCIES_EN, ", ").concat(str.UK_ABBR_EN) ? region.replace(", ".concat(str.CROWN_DEPENDENCIES_EN, ", ").concat(str.UK_ABBR_EN), '') : str.CROWN_DEPENDENCIES_EN;
+        region = englishRegion.reverse().join(', ');
         return region;
       }
     };

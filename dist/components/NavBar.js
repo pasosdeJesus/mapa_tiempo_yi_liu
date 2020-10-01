@@ -102,9 +102,8 @@ var NavBar = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "nav-bar"
       }, /*#__PURE__*/_react["default"].createElement(_reactstrap.UncontrolledDropdown, null, /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownToggle, {
-        tag: "div",
+        tag: "span",
         className: "nav-bar-icon",
-        "data-toggle": "dropdown",
         "data-tip": _i18n["default"].LANGUAGE_HELP_TEXT[lang]
       }, _i18n["default"].LANGUAGE[lang]), /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownMenu, null, Object.keys(_i18n["default"].LANGUAGE).map(function (x) {
         return /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownItem, {
