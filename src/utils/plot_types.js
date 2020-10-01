@@ -101,53 +101,6 @@ export const plotTypes = {
         movingAverage: true,
         text: i18n.CASES
     },
-    plot_fatality_recovery: {
-        subregions: false,
-        metricChange: false,
-        statsChange: false,
-        scaleChange: false,
-        movingAverage: true,
-        text: i18n.FATALITY_RECOVERY_RATE
-    },
-    plot_growth: {
-        subregions: false,
-        metricChange: true,
-        statsChange: true,
-        scaleChange: false,
-        movingAverage: true,
-        text: i18n.GROWTH_RATE
-    },
-    plot_one_vs_rest: {
-        subregions: false,
-        metricChange: true,
-        statsChange: true,
-        scaleChange: true,
-        movingAverage: true,
-        text: i18n.ONE_VS_REST
-    },
-    plot_fatality_line: {
-        subregions: false,
-        metricChange: false,
-        statsChange: false,
-        scaleChange: false,
-        text: i18n.FATALITY_LINE
-    },
-    plot_doubling_time: {
-        subregions: false,
-        metricChange: true,
-        statsChange: false,
-        scaleChange: false,
-        movingAverage: true,
-        text: i18n.CASE_DOUBLING_TIME
-    },
-    plot_r0: {
-        subregions: false,
-        metricChange: false,
-        statsChange: false,
-        scaleChange: false,
-        movingAverage: true,
-        text: i18n.ESTIMATED_RO
-    },
     plot_ranking: {
         subregions: true,
         metricChange: true,
@@ -171,13 +124,6 @@ export const plotTypes = {
         movingAverage: true,
         text: i18n.SUBREGION_SHIFTED
     },
-    plot_subregion_stream: {
-        subregions: true,
-        metricChange: true,
-        statsChange: true,
-        scaleChange: false,
-        text: i18n.SUBREGION_STREAM
-    },
     plot_subregion_active_stream: {
         subregions: false,
         metricChange: false,
@@ -185,13 +131,6 @@ export const plotTypes = {
         scaleChange: false,
         text: i18n.SUBREGION_ACTIVE_STREAM
     },
-    plot_subregion_fatality: {
-        subregions: true,
-        metricChange: false,
-        statsChange: false,
-        scaleChange: false,
-        text: i18n.SUBREGION_FATALITY
-    }
 }
 
 export const plotSpecificTypes = {

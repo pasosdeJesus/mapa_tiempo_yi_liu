@@ -28,10 +28,8 @@ NEWCASE:
   fr: Nouveaux
   zh: 新增
 CONFIRMED:
-  en: Confirmed
-  es: Confirmados
-  fr: Confirmés
-  zh: 确诊
+  en: Violencia Político Social
+  es: Violencia Politico Social
 DEATHS:
   en: Deaths
   es: Muertes
@@ -332,11 +330,6 @@ US_MAP2:
   es: US (Condados)
   fr: US (Comtés)
   zh: 美国（县级）
-FRANCE_MAP:
-  en: France
-  es: Francia
-  fr: France
-  zh: 法国
 GERMANY_MAP:
   en: Germany
   es: Alemania

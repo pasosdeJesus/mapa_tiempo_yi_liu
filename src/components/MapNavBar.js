@@ -74,7 +74,6 @@ export default class MapNavBar extends Component {
                         <DropdownToggle
                             className="map-toggle-button"
                             tag="span"
-                            data-toggle="dropdown"
                             aria-expanded={this.state.dropdownOpen}
                         >
                             <FiMap size={14} style={{ marginRight: 10 }} />
@@ -99,13 +98,7 @@ export default class MapNavBar extends Component {
                             }}
                         >
                             {[
-                                'Global',
-                                'Asia',
-                                'Europe',
-                                'North America',
                                 'South America',
-                                'Oceania',
-                                'Africa',
                                 null
                             ].map((continent) =>
                                 Object.keys(mapText)

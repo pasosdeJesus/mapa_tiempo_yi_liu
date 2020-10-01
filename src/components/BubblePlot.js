@@ -12,7 +12,7 @@ export default class BubblePlot extends Component {
 
     // hack so that bubble plot can interact with other plots
     handleNodeClick = (node) => {
-        const region = node.path === str.GLOBAL_ZH ? [ node.path ] : node.path.split('.').reverse().slice(1)
+        const region = node.path === str.COLOMBIA_ZH ? [ node.path ] : node.path.split('.').reverse().slice(1)
         this.props.regionToggle(region)
     }
 
@@ -38,60 +38,31 @@ export default class BubblePlot extends Component {
         const { data, metric, currentRegion, date, playing, lang, darkMode, fullTree } = this.props
         if (data == null) return <div />
         let plotData = {
-            name: str.GLOBAL_ZH,
-            displayName: lang === 'en' ? str.GLOBAL_EN : str.GLOBAL_ZH,
-            confirmedCount: data[str.GLOBAL_ZH].confirmedCount[date],
-            deadCount: data[str.GLOBAL_ZH].deadCount[date],
-            curedCount: data[str.GLOBAL_ZH].curedCount[date],
+            name: str.COLOMBIA_ZH,
+            displayName: lang === 'en' ? str.GLOBAL_EN : str.COLOMBIA_ZH,
+            confirmedCount: data[str.COLOMBIA_ZH].confirmedCount[date],
             children: generateTreeData(data, date, lang)
         }
 
         let currentNodePath =
-            currentRegion[0] === str.GLOBAL_ZH ? str.GLOBAL_ZH : [ str.GLOBAL_ZH, ...currentRegion ].reverse().join('.')
+            currentRegion[0] === str.COLOMBIA_ZH ? str.COLOMBIA_ZH : [ str.COLOMBIA_ZH, ...currentRegion ].reverse().join('.')
 
         // TODO: Node does not exist when count is 0. Need to find the parent node that has non-zero count.
         const currentData = getDataFromRegion(data, currentRegion)
         const count = currentData[metric][date]
         if (
             count == null ||
-            count === 0 ||
-            (currentRegion[0] === str.CHINA_ZH && currentRegion.length > 3) ||
-            (currentRegion[0] === str.US_ZH && currentRegion.length === 3) ||
-            (currentRegion[0] === str.UK_ZH && currentRegion.length > 3) ||
-            (currentRegion[0] === str.ITALY_ZH && currentRegion.length > 2) ||
-            (currentRegion[0] === str.LATVIA_ZH && currentRegion.length > 2) ||
-            (currentRegion[0] === str.PHILIPPINES_ZH && currentRegion.length > 2) ||
-            (currentRegion[0] === str.SLOVENIA_ZH && currentRegion.length > 2)
+            count === 0
         )
-            currentNodePath = [ str.GLOBAL_ZH, ...currentRegion.slice(0, currentRegion.length - 1) ].reverse().join('.')
+            currentNodePath = [ str.COLOMBIA_ZH, ...currentRegion.slice(0, currentRegion.length - 1) ].reverse().join('.')
 
         let displayNodePath =
             Object.keys(currentData).length > 4
                 ? currentNodePath
-                : currentRegion[0] === str.GLOBAL_ZH
-                  ? str.GLOBAL_ZH
-                  : [ str.GLOBAL_ZH, ...currentRegion.slice(0, currentRegion.length - 1) ].reverse().join('.')
+                : currentRegion[0] === str.COLOMBIA_ZH
+                  ? str.COLOMBIA_ZH
+                  : [ str.COLOMBIA_ZH, ...currentRegion.slice(0, currentRegion.length - 1) ].reverse().join('.')
 
-        if (currentRegion[0] === str.US_ZH && currentRegion.length > 1)
-            displayNodePath = [ str.GLOBAL_ZH, str.US_ZH ].reverse().join('.')
-
-        if (currentRegion[0] === str.UK_ZH && currentRegion.length > 2)
-            displayNodePath = [ str.GLOBAL_ZH, ...currentRegion.slice(0, 2) ].reverse().join('.')
-
-        if (currentRegion[0] === str.CHINA_ZH && currentRegion.length > 2)
-            displayNodePath = [ str.GLOBAL_ZH, ...currentRegion.slice(0, 2) ].reverse().join('.')
-
-        if (currentRegion[0] === str.ITALY_ZH && currentRegion.length > 1)
-            displayNodePath = [ str.GLOBAL_ZH, str.ITALY_ZH ].reverse().join('.')
-
-        if (currentRegion[0] === str.LATVIA_ZH && currentRegion.length > 1)
-            displayNodePath = [ str.GLOBAL_ZH, str.LATVIA_ZH ].reverse().join('.')
-
-        if (currentRegion[0] === str.PHILIPPINES_ZH && currentRegion.length > 1)
-            displayNodePath = [ str.GLOBAL_ZH, str.PHILIPPINES_ZH ].reverse().join('.')
-
-        if (currentRegion[0] === str.SLOVENIA_ZH && currentRegion.length > 1)
-            displayNodePath = [ str.GLOBAL_ZH, str.SLOVENIA_ZH ].reverse().join('.')
 
         return (
             <div className="bubble-plot-wrap">

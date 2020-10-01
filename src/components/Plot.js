@@ -60,11 +60,6 @@ export default class Plot extends Component {
         const currentRegionIsGlobal = currentRegion.length === 1 && currentRegion[0] === str.GLOBAL_ZH
         const hasSubregions = Object.keys(getDataFromRegion(data, currentRegion)).length > 4 || currentRegionIsGlobal
 
-        if (currentRegionIsGlobal && this.props.plotType === 'plot_one_vs_rest') {
-            this.props.handlePlotTypeChange('plot_basic')
-            this.setSpecificPlotType('plot_basic', this.state.plotDetails)
-        }
-
         if (!hasSubregions && plotTypes[this.props.plotType].subregions) {
             this.props.handlePlotTypeChange('plot_basic')
             this.setSpecificPlotType('plot_basic', this.state.plotDetails)
@@ -97,7 +92,6 @@ export default class Plot extends Component {
 
     render() {
         const { plotType, data, lang, darkMode, fullPlot, fullTree, fullPlotToggle, fullDimensions } = this.props
-
         if (data == null || fullTree) return <div />
 
         const plotParameters = plotSpecificTypes[this.state.plotSpecificType]

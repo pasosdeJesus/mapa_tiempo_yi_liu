@@ -37,7 +37,6 @@ export default class PlotSelector extends Component {
                 <DropdownToggle
                     tag="span"
                     className="line-plot-title"
-                    data-toggle="dropdown"
                     aria-expanded={this.state.dropdownOpen}
                 >
                     <span>{plotParameters.text[lang]}</span>

@@ -16,14 +16,13 @@ import NavBar from './NavBar'
 import Loading from './Loading'
 import Footer from './Footer'
 import Region from './Region'
-import TransmissionNetwork from './TransmissionNetwork'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
 import * as str from '../utils/strings'
 import { updateDarkMode, isoDate } from '../utils/utils'
 import { mapText } from '../utils/map_text'
 
 const defaultState = {
-    currentMap: 'WORLD',
+    currentMap: 'COL',
     metric: 'confirmedCount',
     currentRegion: [ str.COLOMBIA_ZH ],
     playing: false,
@@ -37,10 +36,10 @@ const defaultState = {
 class App extends Component {
     state = {
         startDate: '2020-01-24',
-        endDate: '2020-02-14',
-        date: '2020-02-14',
-        tempDate: '2020-02-14',
-        plotDates: [ '2020-01-24', '2020-02-14' ],
+        endDate: '2020-06-25',
+        date: '2020-06-25',
+        tempDate: '2020-06-25',
+        plotDates: [ '2020-01-24', '2020-06-25' ],
         data: null,
         dataLoaded: false,
         lang: 'es',
@@ -59,7 +58,7 @@ class App extends Component {
     
     fetchData = () =>
         fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
-            const latest = Object.keys(res[str.GLOBAL_ZH].confirmedCount).pop()
+            const latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop()
             this.setState({
                 data: res,
                 dataLoaded: true,
@@ -74,7 +73,7 @@ class App extends Component {
             this.tooltipRebuild()
         })
 
-  getCases = (data) => {
+    getCases = (data) => {
        var casesRefact = [];
 	
       // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
@@ -108,7 +107,6 @@ class App extends Component {
                   obj[country][depart].curedCount = dateszeros;
                   obj[country][depart].deadCount = dateszeros;
                   var cuenta = 0;
-                  console.log("casesRefact: ", casesRefact)
                   casesRefact.map((casos) => {
                     if(item[1].ENGLISH.toUpperCase() == casos.nombre){
                       let dateCase = casos.fecha;
@@ -135,7 +133,6 @@ class App extends Component {
 	})
 	console.log("Data Obj refact: ", obj)
     }
-
     componentDidMount() {
         updateDarkMode(this.state.darkMode)
         this.fetchData()
@@ -184,31 +181,9 @@ class App extends Component {
         const { currentMap } = this.state
         this.setState({ currentRegion: newRegion })
         if (!mapChange) return
-
-        if (currentMap === str.TRANSMISSION) return
-
-        if (newRegion[0] === str.CHINA_ZH) {
-            if (newRegion.length >= 4) {
-                this.mapToggle(str.CHINA_MAP2)
-            } else if (newRegion.length >= 2 && newRegion[1] === str.HONGKONG_ZH) {
-                this.mapToggle(str.HONGKONG_MAP)
-            } else if (currentMap !== str.CHINA_MAP2) {
-                this.mapToggle(str.CHINA_MAP1)
-            }
-        } else if (newRegion[0] === str.ITALY_ZH) {
-            if (newRegion.length >= 3) {
-                this.mapToggle(str.ITALY_MAP2)
-            } else if (currentMap !== str.ITALY_MAP2) {
-                this.mapToggle(str.ITALY_MAP)
-            }
-        } else if (newRegion[0] === str.INTL_CONVEYANCE_ZH) {
-            this.mapToggle(str.JAPAN_MAP)
-        } else {
             let map = Object.keys(mapText).find((x) => mapText[x].regionName === newRegion[0])
             map = map != null ? map : str.WORLD_MAP
-            if (map === str.WORLD_MAP && currentMap === str.EUROPE_MAP) map = str.EUROPE_MAP
             this.mapToggle(map)
-        }
     }
     
     playingToggle = () => this.setState({ playing: !this.state.playing })
@@ -252,7 +227,6 @@ class App extends Component {
     tooltipRebuild = () => ReactTooltip.rebuild()
     changeDataJSON = (data) => {
     
-    	console.log("Data Two: ", data)
     }
   
   render(){
@@ -303,13 +277,6 @@ class App extends Component {
                                                     width: !fullMap ? '100%' : this.state.fullDimensions.width
                                                 }}
                                             >
-                                                {currentMap === str.TRANSMISSION && (
-                                                    <TransmissionNetwork
-                                                        {...this.state}
-                                                        regionToggle={this.regionToggle}
-                                                        tooltipRebuild={this.tooltipRebuild}
-                                                    />
-                                                )}
                                                 {currentMap !== str.TRANSMISSION && (
                                                     <Map
                                                         {...this.state}

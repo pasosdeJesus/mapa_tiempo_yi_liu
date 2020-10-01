@@ -154,33 +154,6 @@ export default class Region extends Component {
 
         if (lang === 'zh') {
             region = region.join('')
-            // China
-            region = region !== str.CHINA_ZH ? region.replace(str.CHINA_ZH, '') : str.CHINA_ZH
-            region =
-                region !== str.INTL_CONVEYANCE_ZH ? region.replace(str.INTL_CONVEYANCE_ZH, '') : str.INTL_CONVEYANCE_ZH
-            region =
-                region !== str.MAINLAND_CHINA_ZH ? region.replace(str.MAINLAND_CHINA_ZH, '') : str.MAINLAND_CHINA_ZH
-
-            // France
-            region =
-                region !== `${str.FRANCE_ZH}${str.METRO_FRANCE_ZH}`
-                    ? region.replace(str.METRO_FRANCE_ZH, '')
-                    : str.METRO_FRANCE_ZH
-            region =
-                region !== `${str.FRANCE_ZH}${str.OVERSEAS_FRANCE_ZH}`
-                    ? region.replace(`${str.FRANCE_ZH}${str.OVERSEAS_FRANCE_ZH}`, '')
-                    : `${str.FRANCE_ZH}${str.OVERSEAS_FRANCE_ZH}`
-
-            // UK
-            region =
-                region !== `${str.UK_ZH}${str.OVERSEAS_TERRITORIES_ZH}`
-                    ? region.replace(`${str.UK_ZH}${str.OVERSEAS_TERRITORIES_ZH}`, '')
-                    : `${str.UK_ZH}${str.OVERSEAS_TERRITORIES_ZH}`
-            region =
-                region !== `${str.UK_ZH}${str.CROWN_DEPENDENCIES_ZH}`
-                    ? region.replace(`${str.UK_ZH}${str.CROWN_DEPENDENCIES_ZH}`, '')
-                    : `${str.UK_ZH}${str.CROWN_DEPENDENCIES_ZH}`
-
             return region
         } else {
             if (data == null) return
@@ -189,44 +162,6 @@ export default class Region extends Component {
                 .map((regionList) => getDataFromRegion(data, regionList).ENGLISH)
             englishRegion = [ ...new Set(englishRegion) ]
             region = englishRegion.reverse().join(', ')
-
-            // China
-            region = region !== str.CHINA_EN ? region.replace(`, ${str.CHINA_EN}`, '') : str.CHINA_EN
-            region =
-                region !== str.MAINLAND_CHINA_EN
-                    ? region.replace(`, ${str.MAINLAND_CHINA_EN}`, '')
-                    : str.MAINLAND_CHINA_EN
-
-            // France
-            region =
-                region !== `${str.METRO_FRANCE_EN}, ${str.FRANCE_EN}`
-                    ? region.replace(`, ${str.METRO_FRANCE_EN}`, '')
-                    : str.METRO_FRANCE_EN
-            region =
-                region !== `${str.OVERSEAS_FRANCE_EN}, ${str.FRANCE_EN}`
-                    ? region.replace(`, ${str.OVERSEAS_FRANCE_EN}, ${str.FRANCE_EN}`, '')
-                    : str.OVERSEAS_FRANCE_EN
-
-            // Cruise ship
-            region =
-                region !== str.INTL_CONVEYANCE_EN
-                    ? region.replace(`, ${str.INTL_CONVEYANCE_EN}`, '')
-                    : str.INTL_CONVEYANCE_EN
-
-            // USA
-            region = region !== str.US_EN ? region.replace(str.US_EN, 'US') : str.US_EN
-
-            // UK
-            region = region !== str.UK_EN ? region.replace(str.UK_EN, 'UK') : str.UK_EN
-            region =
-                region !== `${str.OVERSEAS_TERRITORIES_EN}, ${str.UK_ABBR_EN}`
-                    ? region.replace(`, ${str.OVERSEAS_TERRITORIES_EN}, ${str.UK_ABBR_EN}`, '')
-                    : str.OVERSEAS_TERRITORIES_EN
-            region =
-                region !== `${str.CROWN_DEPENDENCIES_EN}, ${str.UK_ABBR_EN}`
-                    ? region.replace(`, ${str.CROWN_DEPENDENCIES_EN}, ${str.UK_ABBR_EN}`, '')
-                    : str.CROWN_DEPENDENCIES_EN
-
             return region
         }
     }
