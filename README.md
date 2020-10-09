@@ -47,8 +47,10 @@ responda a peticiones GET así:
   <dd>que retorne WORLD.json como en <https://github.com/pasosdeJesus/sivel2_gen/raw/usa_paq_mapa_tiempo/test/dummy/public/maps/WORLD.json></dd>
   <dt>`/maps/gadm36_COL_1` </dt>
   <dd>que retorne gadm36_COL_1.json como en <https://github.com/pasosdeJesus/sivel2_gen/raw/usa_paq_mapa_tiempo/test/dummy/public/maps/gadm36_COL_1.json></dd>
-  <dt>`/casos/infomapa/datoscovid`</dt>
+  <dt>`sivel2/casos/infomapa/datoscovid`</dt>
   <dd>que retorne `all.json` como en <https://github.com/pasosdeJesus/sivel2_gen/raw/usa_paq_mapa_tiempo/test/dummy/public/data/all.json></dt>
+  <dt>`sivel2/casos.json`</dt>
+  <dd>que retorne casos según el API de SIVeL2, ver <https://github.com/pasosdeJesus/sivel2/blob/master/doc/API_casos.md></dt>
 </dl>
   
 # 2. Ayudas para resolver problemas en el uso
