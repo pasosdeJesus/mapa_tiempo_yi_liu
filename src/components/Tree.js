@@ -29,7 +29,7 @@ export default class Tree extends Component {
             height: vh < 850 && vw >= 992 ? 240 : 280
         })
     }
-
+//
     render() {
         const { data, currentRegion, date, fullPlot, fullTree, fullTreeToggle, fullDimensions, lang } = this.props
         if (fullPlot) return <div />

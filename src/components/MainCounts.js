@@ -6,7 +6,6 @@ export default class MainCounts extends Component {
     render() {
         const { data, currentRegion, date, lang, fullPlot, fullTree } = this.props
         if (data == null) return <div />
-
         return (
             <div className="counts-wrap">
                 {!fullPlot &&
