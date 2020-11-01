@@ -43,6 +43,22 @@ Por ahora la apliación incluye de forma estática los datos necesarios unicamen
 para la visulación del mapa de Colombia y sus departamentos. 
 
   
+Si al ejecutar no se presenta el mapa, y en el inspector ve un problema del estilo:
+
+```react-table.production.min.js:161 Uncaught TypeError: Cannot read property 'useLayoutEffect' of undefined```
+
+Se trata del problema con react-table descrito en  https://github.com/tannerlinsley/react-table/discussions/2048
+lo puede resolver agregando al final de   `config/webpack/environment.js`:   
+
+```
+const nodeModulesLoader = environment.loaders.get('nodeModules')                 
+                                                                                 
+if (!Array.isArray(nodeModulesLoader.exclude)) {                                 
+    nodeModulesLoader.exclude = (nodeModulesLoader.exclude == null) ? [] : [nodeModulesLoader.exclude]
+}                                                                                
+nodeModulesLoader.exclude.push(/react-table/)   
+```
+
 # 2. Ayudas para resolver problemas en el uso
 
 Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, 
