@@ -154,7 +154,7 @@ copia de `node_modules`, de la copia que queda en el cache `~/.cache/yarn`
 y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
 
      yarn cache clean @pasosdejesus/mapa_tiempo_yi_liu
-     yarn remove clean @pasosdejesus/mapa_tiempo_yi_liu
+     yarn remove @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
 
 ### 3.1.4 Actualizar dependencias
