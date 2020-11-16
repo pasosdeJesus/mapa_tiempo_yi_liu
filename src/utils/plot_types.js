@@ -76,14 +76,14 @@ export const getSpecificPlotType = (plotType, plotDetails) => {
             specificType = plotDetails.fatalityLine === 'rate' ? 'subregion_fatality' : 'subregion_fatality2'
         if (plotDetails.diseaseComparison === 'hide')
             specificType = plotDetails.fatalityLine === 'rate' ? 'subregion_fatality_only' : 'subregion_fatality2_only'
-    } else if (plotType === 'plot_subregion_shifted') {
+    /*} else if (plotType === 'plot_subregion_shifted') {
         if (plotDetails.shifted === '100')
             specificType =
                 plotDetails.stats === 'cumulative' ? 'subregion_total_shifted_100' : 'subregion_new_shifted_100'
         if (plotDetails.shifted === '10')
             specificType =
                 plotDetails.stats === 'cumulative' ? 'subregion_total_shifted_10' : 'subregion_new_shifted_10'
-    } else if (plotType === 'plot_doubling_time') {
+    */} else if (plotType === 'plot_doubling_time') {
         specificType = 'doubling_time'
     } else if (plotType === 'plot_r0') {
         specificType = 'r0'
@@ -116,14 +116,14 @@ export const plotTypes = {
         movingAverage: true,
         text: i18n.SUBREGION
     },
-    plot_subregion_shifted: {
+    /*plot_subregion_shifted: {
         subregions: true,
         metricChange: true,
         statsChange: true,
         scaleChange: true,
         movingAverage: true,
         text: i18n.SUBREGION_SHIFTED
-    },
+    },*/
     plot_subregion_active_stream: {
         subregions: false,
         metricChange: false,
