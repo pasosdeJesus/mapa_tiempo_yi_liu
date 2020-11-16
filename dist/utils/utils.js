@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.generateTreeData = exports.updateDarkMode = exports.getDataFromRegion = exports.metricText = exports.isoDate = exports.formatDate = exports.previousDay = exports.nextDay = exports.parseDate = void 0;
+exports.generateTreeData = exports.updateDarkMode = exports.simplifyName = exports.getDataFromRegion = exports.metricText = exports.isoDate = exports.formatDate = exports.previousDay = exports.nextDay = exports.parseDate = void 0;
 
 var _addDays = _interopRequireDefault(require("date-fns/addDays"));
 
@@ -106,6 +106,21 @@ var getDataFromRegion = function getDataFromRegion(data, region) {
 };
 
 exports.getDataFromRegion = getDataFromRegion;
+
+var simplifyName = function simplifyName(name, lang) {
+  var simplified = name; // remove parenthesis to save space for legend
+
+  if (lang === 'en') simplified = name.split('(')[0].trim();
+  if (lang === 'en') simplified = simplified.replace('United States of America', 'USA');
+  if (lang === 'en') simplified = simplified.replace('United Kingdom', 'UK');
+  if (lang === 'en') simplified = simplified.replace('International Conveyance', "Int'l Conveyance");
+  if (lang === 'en') simplified = simplified.replace(' District', '');
+  if (lang === 'en') simplified = simplified.replace(' County', '');
+  if (lang === 'zh') simplified = simplified.replace('（来自钻石公主号）', '').trim();
+  return simplified;
+};
+
+exports.simplifyName = simplifyName;
 
 var updateDarkMode = function updateDarkMode(isDarkMode) {
   document.body.style.background = !isDarkMode ? '#fff' : 'var(--darker-grey)';

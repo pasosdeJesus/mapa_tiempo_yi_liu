@@ -72,7 +72,7 @@ var generatePlotDataTotal = function generatePlotDataTotal(_ref) {
   var fullData = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var maxValue = 0;
   var minValue = 100000;
-  var plotData = ['deadCount', 'curedCount', 'confirmedCount'].map(function (metric) {
+  var plotData = ['confirmedCount'].map(function (metric) {
     var counts = (0, _utils.getDataFromRegion)(data, currentRegion)[metric];
     return {
       id: _utils.metricText[metric][lang],
