@@ -71,15 +71,13 @@ class App extends Component {
         })
 
         const { data } = this.state
-	    /* this.getCases(data)
-            this.tooltipRebuild()
-        }) */
+        this.getCases(data)
+        this.tooltipRebuild()
     }
 
     getCases = (data) => {
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        casosUrl = 'https://base.nocheyniebla.org/casos/cuenta'
-        fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
+        var casosUrl = 'https://base.nocheyniebla.org/casos/cuenta'
+        fetch(casosUrl).then((res) => res.json()).then((res) => {
         //fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
             console.log("casos: ", res)
             const cases = res;
