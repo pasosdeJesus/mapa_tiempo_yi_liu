@@ -33,6 +33,10 @@ var str = _interopRequireWildcard(require("../utils/strings"));
 
 var _i18n = _interopRequireDefault(require("js-yaml-loader!../../assets/data/i18n.yml"));
 
+var _WORLD = _interopRequireDefault(require("../../assets/maps/WORLD.json"));
+
+var _gadm36_COL_ = _interopRequireDefault(require("../../assets/maps/gadm36_COL_1.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -251,7 +255,8 @@ var Map = /*#__PURE__*/function (_Component) {
         minZoom: 0.2,
         maxZoom: 5
       }, ![str.WORLD_MAP].includes(this.props.currentMap) && /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geographies, {
-        geography: "/maps/WORLD.json",
+        geography: _WORLD["default"] //{`/maps/WORLD.json`}  Aqui
+        ,
         onMouseEnter: function onMouseEnter() {
           if (!_this3.state.loaded) {
             _this3.setState({
@@ -303,7 +308,8 @@ var Map = /*#__PURE__*/function (_Component) {
           });
         });
       }), /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geographies, {
-        geography: "/maps/".concat(currentMap.filename),
+        geography: _gadm36_COL_["default"] //{`/maps/${currentMap.filename}`} Aqui
+        ,
         onMouseEnter: function onMouseEnter() {
           if (!_this3.state.loaded) {
             _this3.setState({
@@ -377,7 +383,7 @@ var Map = /*#__PURE__*/function (_Component) {
             orientation: ['diagonal']
           }));
         });
-      }), ")}")));
+      }), ")")));
     }
   }]);
 

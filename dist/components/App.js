@@ -49,6 +49,8 @@ var _utils = require("../utils/utils");
 
 var _map_text = require("../utils/map_text");
 
+var _all = _interopRequireDefault(require("../../assets/maps/all.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -134,36 +136,32 @@ var App = /*#__PURE__*/function (_Component) {
     }, defaultState);
 
     _this.fetchData = function () {
-      return fetch('/sivel2/casos/infomapa/datoscovid').then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        var latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop();
+      //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
+      var res = _all["default"];
+      var latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop();
 
-        _this.setState({
-          data: res,
-          dataLoaded: true,
-          date: latest,
-          tempDate: latest,
-          endDate: latest,
-          plotDates: [_this.state.plotDates[0], latest]
-        });
-
-        var data = _this.state.data;
-
-        _this.getCases(data);
-
-        _this.tooltipRebuild();
+      _this.setState({
+        data: res,
+        dataLoaded: true,
+        date: latest,
+        tempDate: latest,
+        endDate: latest,
+        plotDates: [_this.state.plotDates[0], latest]
       });
+
+      var data = _this.state.data;
+      /* this.getCases(data)
+             this.tooltipRebuild()
+         }) */
     };
 
     _this.getCases = function (data) {
-      var casesRefact = []; // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
-      //fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-
-      fetch("/sivel2/casos/cuenta").then(function (res) {
+      var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+          casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
+      fetch(proxyUrl + casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
+        //fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
         console.log("casos: ", res);
         var cases = res;
         console.log("data antes: ", data);

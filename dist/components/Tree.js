@@ -17,6 +17,8 @@ var _RadioButton = _interopRequireDefault(require("./RadioButton"));
 
 var _i18n = _interopRequireDefault(require("js-yaml-loader!../../assets/data/i18n.yml"));
 
+var _utils = require("../utils/utils");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -94,12 +96,16 @@ var Tree = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var _this$props = this.props,
+          data = _this$props.data,
+          currentRegion = _this$props.currentRegion,
+          date = _this$props.date,
           fullPlot = _this$props.fullPlot,
           fullTree = _this$props.fullTree,
           fullTreeToggle = _this$props.fullTreeToggle,
           fullDimensions = _this$props.fullDimensions,
           lang = _this$props.lang;
       if (fullPlot) return /*#__PURE__*/_react["default"].createElement("div", null);
+      var count = Object.keys((0, _utils.getDataFromRegion)(data, currentRegion)['confirmedCount']).length > 0 ? (0, _utils.getDataFromRegion)(data, currentRegion)['confirmedCount'][date] : '—';
       var FullScreenIcon = fullTree ? _ai.AiOutlineFullscreenExit : _ai.AiOutlineFullscreen;
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "tree-wrap",
@@ -126,7 +132,7 @@ var Tree = /*#__PURE__*/function (_Component) {
           });
         },
         alwaysShow: true
-      })), this.state.type === 'bubble' && /*#__PURE__*/_react["default"].createElement(_BubblePlot["default"], this.props), this.state.type === 'table' && /*#__PURE__*/_react["default"].createElement(_Table["default"], this.props));
+      })), count ? this.state.type === 'bubble' && /*#__PURE__*/_react["default"].createElement(_BubblePlot["default"], this.props) : /*#__PURE__*/_react["default"].createElement("div", null), this.state.type === 'table' && /*#__PURE__*/_react["default"].createElement(_Table["default"], this.props));
     }
   }]);
 
