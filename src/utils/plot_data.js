@@ -25,7 +25,7 @@ const generatePlotDataTotal = (
     let maxValue = 0
     let minValue = 100000
 
-    let plotData = [ 'deadCount', 'curedCount', 'confirmedCount' ].map((metric) => {
+    let plotData = ['confirmedCount' ].map((metric) => {
         const counts = getDataFromRegion(data, currentRegion)[metric]
         return {
             id: metricText[metric][lang],
