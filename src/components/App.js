@@ -20,6 +20,7 @@ import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
 import * as str from '../utils/strings'
 import { updateDarkMode, isoDate } from '../utils/utils'
 import { mapText } from '../utils/map_text'
+import allJson from '../../assets/maps/all.json'
 
 const defaultState = {
     currentMap: 'COL',
@@ -56,36 +57,36 @@ class App extends Component {
         ...defaultState
     }
     
-    fetchData = () =>
-        fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
-            const latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop()
-            this.setState({
-                data: res,
-                dataLoaded: true,
-                date: latest,
-                tempDate: latest,
-                endDate: latest,
-                plotDates: [ this.state.plotDates[0], latest ]
-            })
-
-            const { data } = this.state
-	    this.getCases(data)
-            this.tooltipRebuild()
+    fetchData = () => {
+        //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
+        const res = allJson
+        const latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop()
+        this.setState({
+            data: res,
+            dataLoaded: true,
+            date: latest,
+            tempDate: latest,
+            endDate: latest,
+            plotDates: [ this.state.plotDates[0], latest ]
         })
+
+        const { data } = this.state
+	    /* this.getCases(data)
+            this.tooltipRebuild()
+        }) */
+    }
 
     getCases = (data) => {
-       var casesRefact = [];
-	
-      // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-      //      casosUrl = 'https://base.nocheyniebla.org/casos.json?filtro[q]=&filtro[fechaini]=2018-07-03&filtro[fechafin]=2020-06-30&filtro[disgenera]=reprevista.json&idplantilla=reprevista'
-    	//fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-    	fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
-        console.log("casos: ", res)
-        const cases = res;
-        console.log("data antes: ", data)
-        this.changeData(data, res["casos"])
-        })
-  }
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        casosUrl = 'https://base.nocheyniebla.org/casos/cuenta'
+        fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
+        //fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
+            console.log("casos: ", res)
+            const cases = res;
+            console.log("data antes: ", data)
+            this.changeData(data, res["casos"])
+        })  
+    }
 
 
   changeData= (obj, cas) => {

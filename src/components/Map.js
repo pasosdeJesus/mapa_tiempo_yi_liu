@@ -12,6 +12,8 @@ import maps from 'js-yaml-loader!../../assets/data/maps.yml';
 import { getDataFromRegion, parseDate } from '../utils/utils'
 import * as str from '../utils/strings'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
+import worldJson  from '../../assets/maps/WORLD.json'
+import gadmaJson from '../../assets/maps/gadm36_COL_1.json'
 
 class Map extends Component {
     state = {
@@ -159,7 +161,7 @@ class Map extends Component {
                     >
                         {![ str.WORLD_MAP ].includes(this.props.currentMap) && (
                             <Geographies
-                                geography={`/maps/WORLD.json`}
+                            geography={worldJson} //{`/maps/WORLD.json`}  Aqui
                                 onMouseEnter={() => {
                                     if (!this.state.loaded) {
                                         this.setState({ loaded: true })
@@ -214,7 +216,7 @@ class Map extends Component {
                             </Geographies>
                         )}
                         <Geographies
-                            geography={`/maps/${currentMap.filename}`}
+                            geography={gadmaJson}//{`/maps/${currentMap.filename}`} Aqui
                             onMouseEnter={() => {
                                 if (!this.state.loaded) {
                                     this.setState({ loaded: true })
@@ -316,7 +318,7 @@ class Map extends Component {
                                     )
                                 })}
                         </Geographies>
-                        )}
+                        )
                     </ZoomableGroup>
                 </ComposableMap>
             </Fragment>

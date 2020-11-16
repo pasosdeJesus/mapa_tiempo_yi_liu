@@ -4,6 +4,7 @@ import BubblePlot from './BubblePlot'
 import Table from './Table'
 import RadioButton from './RadioButton'
 import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
+import { getDataFromRegion } from '../utils/utils'
 
 export default class Tree extends Component {
     state = {
@@ -30,8 +31,11 @@ export default class Tree extends Component {
     }
 
     render() {
-        const { fullPlot, fullTree, fullTreeToggle, fullDimensions, lang } = this.props
+        const { data, currentRegion, date, fullPlot, fullTree, fullTreeToggle, fullDimensions, lang } = this.props
         if (fullPlot) return <div />
+        const count = Object.keys(getDataFromRegion(data, currentRegion)['confirmedCount']).length > 0
+                ? getDataFromRegion(data, currentRegion)['confirmedCount'][date]
+                : '—'
 
         const FullScreenIcon = fullTree ? AiOutlineFullscreenExit : AiOutlineFullscreen
         return (
@@ -53,7 +57,10 @@ export default class Tree extends Component {
                         alwaysShow={true}
                     />
                 </div>
-                {this.state.type === 'bubble' && <BubblePlot {...this.props} />}
+                {
+                    count ? this.state.type === 'bubble' && <BubblePlot {...this.props} />
+                        : <div></div>
+                }
                 {this.state.type === 'table' && <Table {...this.props} />}
             </div>
         )
