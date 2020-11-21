@@ -137,11 +137,10 @@ var App = /*#__PURE__*/function (_Component) {
 
     _this.fetchData = function () {
       //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
-      var res = _all["default"];
-      var latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop();
+      var latest = Object.keys(_all["default"][str.COLOMBIA_ZH].confirmedCount).pop();
 
       _this.setState({
-        data: res,
+        data: _all["default"],
         dataLoaded: true,
         date: latest,
         tempDate: latest,
@@ -150,27 +149,27 @@ var App = /*#__PURE__*/function (_Component) {
       });
 
       var data = _this.state.data;
-      /* this.getCases(data)
-             this.tooltipRebuild()
-         }) */
+
+      _this.obtenerCasos();
+
+      _this.tooltipRebuild();
     };
 
-    _this.getCases = function (data) {
-      var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-          casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
-      fetch(proxyUrl + casosUrl).then(function (res) {
+    _this.obtenerCasos = function (datos) {
+      var casosUrl = _this.props.casos_url;
+      /* const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => { */
+
+      fetch(casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
-        //fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
-        console.log("casos: ", res);
-        var cases = res;
-        console.log("data antes: ", data);
-
-        _this.changeData(data, res["casos"]);
+        console.log("casos: ", res); //this.cambiarDatos(datos, res["casos"])
+      })["catch"](function (err) {
+        return console.log("Casos Error: ", err);
       });
     };
 
-    _this.changeData = function (obj, cas) {
+    _this.cambiarDatos = function (obj, cas) {
       var casesRefact = cas;
       console.log("Data Obj: ", obj);
       Object.entries(obj).map(function (data) {
