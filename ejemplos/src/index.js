@@ -2,4 +2,15 @@ import React from 'react';
 import { render} from 'react-dom';
 import App from '../../src';
 
-render(<App/>, document.getElementById("root"));
+class MapaTiempo extends React.Component {
+
+  render() {
+
+    return (
+        <App {...this.props}/>
+    );
+  }
+};
+
+
+render(<MapaTiempo/>, document.getElementById('root'));

@@ -62,12 +62,6 @@ export default class BubblePlot extends Component {
                 : currentRegion[0] === str.COLOMBIA_ZH
                   ? str.COLOMBIA_ZH
                   : [ str.COLOMBIA_ZH, ...currentRegion.slice(0, currentRegion.length - 1) ].reverse().join('.')
-        
-        console.log("Bubble 1: ", plotData);
-        console.log("Bubble 3: ", metric);
-        console.log("Bubble 4: ", data);
-        console.log("Bubble 5: ", playing);
-        console.log("Bubble 6: ", this.handleNodeClick);
 
         return (
             <div className="bubble-plot-wrap">
