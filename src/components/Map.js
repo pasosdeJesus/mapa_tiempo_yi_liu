@@ -161,7 +161,7 @@ class Map extends Component {
                     >
                         {![ str.WORLD_MAP ].includes(this.props.currentMap) && (
                             <Geographies
-                            geography={worldJson} //{`/maps/WORLD.json`}  Aqui
+                                geography={worldJson} //{`/maps/WORLD.json`}  Aqui
                                 onMouseEnter={() => {
                                     if (!this.state.loaded) {
                                         this.setState({ loaded: true })

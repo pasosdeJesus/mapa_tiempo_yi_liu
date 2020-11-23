@@ -6,7 +6,7 @@ import App from './components/App.js'
 export default class MapaTiempoYiLiu extends React.Component {
   render () {
       return (<div>
-        <App/>
+        <App {...this.props}/>
       </div>)
   }
 }

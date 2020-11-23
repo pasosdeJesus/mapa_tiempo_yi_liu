@@ -59,10 +59,9 @@ class App extends Component {
     
     fetchData = () => {
         //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
-        const res = allJson
-        const latest = Object.keys(res[str.COLOMBIA_ZH].confirmedCount).pop()
+        const latest = Object.keys(allJson[str.COLOMBIA_ZH].confirmedCount).pop()
         this.setState({
-            data: res,
+            data: allJson,
             dataLoaded: true,
             date: latest,
             tempDate: latest,
@@ -71,67 +70,68 @@ class App extends Component {
         })
 
         const { data } = this.state
-        this.getCases(data)
+        this.obtenerCasos()
         this.tooltipRebuild()
     }
 
-    getCases = (data) => {
-        var casosUrl = 'https://base.nocheyniebla.org/casos/cuenta'
+    obtenerCasos = (datos) => {
+        const casosUrl = this.props.casos_url
+        /* const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => { */
         fetch(casosUrl).then((res) => res.json()).then((res) => {
-        //fetch("/sivel2/casos/cuenta").then((res) => res.json()).then((res) => {
             console.log("casos: ", res)
-            const cases = res;
-            console.log("data antes: ", data)
-            this.changeData(data, res["casos"])
-        })  
+            //this.cambiarDatos(datos, res["casos"])
+        })
+        .catch(err => console.log("Casos Error: ", err))   
     }
 
 
-  changeData= (obj, cas) => {
+    cambiarDatos= (obj, cas) => {
     	
-       var casesRefact = cas;
-	console.log("Data Obj: ", obj)
-	Object.entries(obj).map( (data) => {
-	  var country = data[0];
-          if(country == "哥伦比亚" ){
-            var countryObj = data[1];
-            var cuentatotal = 0
-            Object.entries(countryObj).map ( (item) =>{
-              if(typeof item[1] == "object"){
-                if(item[1].ENGLISH){
-                  var depart = item[0];
-                  var dateszeros = {
-                  }
-                  obj[country][depart].confirmedCount = dateszeros;
-                  obj[country][depart].curedCount = dateszeros;
-                  obj[country][depart].deadCount = dateszeros;
-                  var cuenta = 0;
-                  casesRefact.map((casos) => {
-                    if(item[1].ENGLISH.toUpperCase() == casos.nombre){
-                      let dateCase = casos.fecha;
-                      cuenta += casos.count;
-                      cuentatotal += casos.count
-                      if(obj[country][depart].confirmedCount[dateCase]){
-                        let total = obj[country][depart].confirmedCount[dateCase] + 1;
-                        obj[country][depart].confirmedCount[dateCase] = total;
-                      }else{
-                        obj[country][depart].confirmedCount[dateCase] = 1;
-                      }
-                      obj[country][depart].confirmedCount["2020-07-01"] = cuenta;
-                    } 
-                  });
-                }
-                obj[country].confirmedCount["2020-07-01"] = cuentatotal;
-              }
+        var casesRefact = cas;
+	    console.log("Data Obj: ", obj)
+	    Object.entries(obj).map( (data) => {
+	        var country = data[0];
+            if(country == "哥伦比亚" ){
+                var countryObj = data[1];
+                var cuentatotal = 0
+                Object.entries(countryObj).map ( (item) =>{
+                    if(typeof item[1] == "object"){
+                        if(item[1].ENGLISH){
+                            var depart = item[0];
+                            var dateszeros = {}
+                            obj[country][depart].confirmedCount = dateszeros;
+                            obj[country][depart].curedCount = dateszeros;
+                            obj[country][depart].deadCount = dateszeros;
+                            var cuenta = 0;
+                            casesRefact.map((casos) => {
+                                if(item[1].ENGLISH.toUpperCase() == casos.nombre){
+                                    let dateCase = casos.fecha;
+                                    cuenta += casos.count;
+                                    cuentatotal += casos.count
+                                    if(obj[country][depart].confirmedCount[dateCase]){
+                                        let total = obj[country][depart].confirmedCount[dateCase] + 1;
+                                        obj[country][depart].confirmedCount[dateCase] = total;
+                                    }else{
+                                        obj[country][depart].confirmedCount[dateCase] = 1;
+                                    }
+                                    obj[country][depart].confirmedCount["2020-07-01"] = cuenta;
+                                } 
+                            });
+                        }
+                        obj[country].confirmedCount["2020-07-01"] = cuentatotal;
+                    }
 
-            })
-          }
-	})
-	this.setState({
-		data: obj
-	})
-	console.log("Data Obj refact: ", obj)
+                })
+            }
+        })
+    
+        this.setState({
+            data: obj
+        })
+	    console.log("Data Obj refact: ", obj)
     }
+
     componentDidMount() {
         updateDarkMode(this.state.darkMode)
         this.fetchData()
