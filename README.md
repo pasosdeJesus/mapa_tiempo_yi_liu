@@ -177,8 +177,8 @@ y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
 
 Revise `package.json` para asegurar la distribución correcta de los paquetes de los que
 depende este, entre las 3 secciones de dependencias:
-* de desarrollo `peer-dependencies`,
-* requeridas en tiempo de ejecución en la aplicación que use este paquete `peer-dependencies`
+* de desarrollo `devDependencies`,
+* requeridas en tiempo de ejecución en la aplicación que use este paquete `peerDependencies`
 * y requeridas durante desarrollo y ejecución de la aplicación que use esta `dependencies`
 De esa distribución depende el tamaño del compilado en `dist` y 
 los paquetes que un aplicación que use esta vayan a requerir.
