@@ -1,16 +1,16 @@
 import React from 'react';
 import { render} from 'react-dom';
-import App from '../../src';
+import MapaTiempo from '../../src/MapaTiempo.js';
 
-class MapaTiempo extends React.Component {
+class MapaApp extends React.Component {
 
   render() {
 
     return (
-        <App {...this.props}/>
+        <MapaTiempo {...this.props}/>
     );
   }
 };
 
 
-render(<MapaTiempo/>, document.getElementById('root'));
+render(<MapaApp/>, document.getElementById('root'));
