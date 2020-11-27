@@ -1,6 +1,6 @@
 import React from 'react';
 import { render} from 'react-dom';
-import MapaTiempo from '../../src/MapaTiempo.js';
+import MapaTiempo from '../../src/index.js';
 
 class MapaApp extends React.Component {
 

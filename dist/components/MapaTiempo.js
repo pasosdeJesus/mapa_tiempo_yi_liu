@@ -17,7 +17,7 @@ var _reactHelmet = _interopRequireDefault(require("react-helmet"));
 
 var _reactMeasure = _interopRequireDefault(require("react-measure"));
 
-require("./App.css");
+require("./MapaTiempo.css");
 
 var _Map = _interopRequireDefault(require("./Map"));
 
@@ -99,15 +99,15 @@ var defaultState = {
   fullTree: false
 };
 
-var App = /*#__PURE__*/function (_Component) {
-  _inherits(App, _Component);
+var MapaTiempo = /*#__PURE__*/function (_Component) {
+  _inherits(MapaTiempo, _Component);
 
-  var _super = _createSuper(App);
+  var _super = _createSuper(MapaTiempo);
 
-  function App() {
+  function MapaTiempo() {
     var _this;
 
-    _classCallCheck(this, App);
+    _classCallCheck(this, MapaTiempo);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -368,7 +368,7 @@ var App = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(App, [{
+  _createClass(MapaTiempo, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       (0, _utils.updateDarkMode)(this.state.darkMode);
@@ -485,8 +485,8 @@ var App = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return App;
+  return MapaTiempo;
 }(_react.Component);
 
-var _default = App;
+var _default = MapaTiempo;
 exports["default"] = _default;
