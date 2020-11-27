@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip'
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from 'react-icons/ai'
 import Helmet from 'react-helmet'
 import Measure from 'react-measure'
-import './App.css'
+import './MapaTiempo.css'
 import Map from './Map'
 import MapNavBar from './MapNavBar'
 import DateSlider from './DateSlider'
@@ -34,7 +34,7 @@ const defaultState = {
     fullTree: false
 }
 
-class App extends Component {
+class MapaTiempo extends Component {
     state = {
         startDate: '2020-01-24',
         endDate: '2020-06-25',
@@ -348,4 +348,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default MapaTiempo
