@@ -155,67 +155,64 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
       _this.tooltipRebuild();
     };
 
-    _this.obtenerCasos = function (datos) {
-      var casosUrl = _this.props.casos_url;
-      /* const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => { */
+    _this.obtenerCasos = function () {
+      var proxyUrl = 'https://cors-anywhere.herokuapp.com/'; //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
 
-      fetch(casosUrl).then(function (res) {
+      var casosUrl = _this.props.casos_url;
+      fetch(proxyUrl + casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
-        console.log("casos: ", res); //this.cambiarDatos(datos, res["casos"])
+        //fetch(casosUrl).then((res) => res.json()).then((res) => {
+        console.log("casos: ", res);
+
+        _this.cambiarDatos(res["casos"]);
       })["catch"](function (err) {
         return console.log("Casos Error: ", err);
       });
     };
 
-    _this.cambiarDatos = function (obj, cas) {
-      var casesRefact = cas;
-      console.log("Data Obj: ", obj);
-      Object.entries(obj).map(function (data) {
-        var country = data[0];
+    _this.cambiarDatos = function (casosApi) {
+      console.log("Data Obj: ");
+      var pais = "哥伦比亚";
+      _all["default"][pais].confirmedCount = {};
+      var cuentaTotal = {};
+      var cuentaPais = 0; //Limpieza del Json para que queden vacios todas las fechas
 
-        if (country == "哥伦比亚") {
-          var countryObj = data[1];
-          var cuentatotal = 0;
-          Object.entries(countryObj).map(function (item) {
-            if (_typeof(item[1]) == "object") {
-              if (item[1].ENGLISH) {
-                var depart = item[0];
-                var dateszeros = {};
-                obj[country][depart].confirmedCount = dateszeros;
-                obj[country][depart].curedCount = dateszeros;
-                obj[country][depart].deadCount = dateszeros;
-                var cuenta = 0;
-                casesRefact.map(function (casos) {
-                  if (item[1].ENGLISH.toUpperCase() == casos.nombre) {
-                    var dateCase = casos.fecha;
-                    cuenta += casos.count;
-                    cuentatotal += casos.count;
+      Object.entries(_all["default"][pais]).map(function (item) {
+        if (_typeof(item[1]) == "object" && item[1].ENGLISH) {
+          var departamento = item[0];
+          _all["default"][pais][departamento].confirmedCount = {};
+          _all["default"][pais][departamento].curedCount = {};
+          _all["default"][pais][departamento].deadCount = {};
+          cuentaTotal[departamento] = 0;
+        }
+      });
+      casosApi.map(function (casos) {
+        cuentaPais += casos.cuenta;
+        _all["default"][pais].confirmedCount[casos.fecha] = cuentaPais;
 
-                    if (obj[country][depart].confirmedCount[dateCase]) {
-                      var total = obj[country][depart].confirmedCount[dateCase] + 1;
-                      obj[country][depart].confirmedCount[dateCase] = total;
-                    } else {
-                      obj[country][depart].confirmedCount[dateCase] = 1;
-                    }
+        if (casos.nombre) {
+          Object.entries(_all["default"][pais]).map(function (item) {
+            if (_typeof(item[1]) == "object" && item[1].ENGLISH) {
+              var departamento = item[0];
+              var nombres = casos.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-                    obj[country][depart].confirmedCount["2020-07-01"] = cuenta;
-                  }
-                });
+              if (item[1].ENGLISH.toUpperCase() == nombres.toUpperCase()) {
+                //console.log("If if: ", cuentaTotal.departamento)
+                cuentaTotal[departamento] += casos.cuenta;
               }
 
-              obj[country].confirmedCount["2020-07-01"] = cuentatotal;
+              _all["default"][pais][departamento].confirmedCount[casos.fecha] = cuentaTotal[departamento];
             }
           });
         }
       });
 
       _this.setState({
-        data: obj
+        data: _all["default"]
       });
 
-      console.log("Data Obj refact: ", obj);
+      console.log("Data allJson refact: ", _all["default"]);
     };
 
     _this.updateFullDimensions = function () {
