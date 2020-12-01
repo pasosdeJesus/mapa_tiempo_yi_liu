@@ -156,7 +156,12 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
     };
 
     _this.obtenerCasos = function () {
-      var proxyUrl = 'https://cors-anywhere.herokuapp.com/'; //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
+      var proxyUrl = '';
+
+      if (_this.props.usar_proxy_cors) {
+        proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      } //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
+
 
       var casosUrl = _this.props.casos_url;
       fetch(proxyUrl + casosUrl).then(function (res) {

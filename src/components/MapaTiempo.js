@@ -56,7 +56,7 @@ class MapaTiempo extends Component {
         plotType: 'plot_basic',
         ...defaultState
     }
-    
+
     fetchData = () => {
         //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
         const latest = Object.keys(allJson[str.COLOMBIA_ZH].confirmedCount).pop()
@@ -75,7 +75,10 @@ class MapaTiempo extends Component {
     }
 
     obtenerCasos = () => {
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        let proxyUrl = ''
+        if (this.props.usar_proxy_cors) {
+          proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        }
         //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
         const casosUrl = this.props.casos_url
         fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
@@ -83,12 +86,12 @@ class MapaTiempo extends Component {
             console.log("casos: ", res)
             this.cambiarDatos(res["casos"])
         })
-        .catch(err => console.log("Casos Error: ", err))   
+        .catch(err => console.log("Casos Error: ", err))
     }
 
 
     cambiarDatos = (casosApi) => {
-    	
+
         console.log("Data Obj: ")
         const pais = "哥伦比亚";
         allJson[pais].confirmedCount = {};
@@ -107,7 +110,7 @@ class MapaTiempo extends Component {
         });
 
         casosApi.map((casos) => {
-            
+
             cuentaPais += casos.cuenta
             allJson[pais].confirmedCount[casos.fecha] = cuentaPais;
 
@@ -119,15 +122,15 @@ class MapaTiempo extends Component {
                         var nombres = casos.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                         if(item[1].ENGLISH.toUpperCase() == nombres.toUpperCase()){
                             //console.log("If if: ", cuentaTotal.departamento)
-                            cuentaTotal[departamento] +=  casos.cuenta                         
+                            cuentaTotal[departamento] +=  casos.cuenta
                         }
                         allJson[pais][departamento].confirmedCount[casos.fecha] = cuentaTotal[departamento];
-                        
+
                     }
                 });
-            } 
+            }
         });
-    
+
         this.setState({
             data: allJson
         })
@@ -175,7 +178,7 @@ class MapaTiempo extends Component {
             // do not reset map zoom when switching between two China maps
             mapZoom: newMap === str.WORLD_MAP || this.state.currentMap === str.WORLD_MAP ? 1 : this.state.mapZoom
         })
-    
+
     metricToggle = (newMetric) => this.setState({ metric: newMetric })
 
     regionToggle = (newRegion, mapChange = true) => {
@@ -186,7 +189,7 @@ class MapaTiempo extends Component {
             map = map != null ? map : str.WORLD_MAP
             this.mapToggle(map)
     }
-    
+
     playingToggle = () => this.setState({ playing: !this.state.playing })
 
     scaleToggle = (newScale) => this.setState({ scale: newScale })
@@ -210,7 +213,7 @@ class MapaTiempo extends Component {
         updateDarkMode(!this.state.darkMode)
         this.setState({ darkMode: !this.state.darkMode })
     }
-    
+
     handleMapZoomChange = (newZoom) => this.setState({ mapZoom: newZoom })
 
     handleDateChange = (newDate) => this.setState({ date: newDate, tempDate: newDate })
@@ -227,13 +230,13 @@ class MapaTiempo extends Component {
     handlePlotTypeChange = (newType) => this.setState({ plotType: newType })
     tooltipRebuild = () => ReactTooltip.rebuild()
     changeDataJSON = (data) => {
-    
+
     }
-  
+
   render(){
         const { data, lang, dataLoaded, currentMap, fullMap, fullPlot, fullTree, darkMode } = this.state
         const fullScreenMode = fullMap ? 'map-full' : fullPlot ? 'plot-full' : fullTree ? 'tree-full' : ''
-        const FullScreenIcon = fullMap ? AiOutlineFullscreenExit : AiOutlineFullscreen  
+        const FullScreenIcon = fullMap ? AiOutlineFullscreenExit : AiOutlineFullscreen
         this.changeDataJSON(data)
 	  return (
         <div className={`App ${darkMode ? 'dark' : ''}`}>

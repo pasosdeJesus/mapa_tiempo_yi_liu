@@ -1,6 +1,6 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Mapa y graficos ",
   "main": "dist/index.js",
   "scripts": {
