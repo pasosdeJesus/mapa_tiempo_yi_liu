@@ -158,12 +158,18 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
     _this.obtenerCasos = function () {
       var proxyUrl = '';
 
-      if (_this.props.usar_proxy_cors) {
+      if (typeof _this.props.usar_proxy_cors != 'undefined' && _this.props.usar_proxy_cors == 'true') {
         proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      } //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
+      }
 
+      console.log('proxyUrl=', proxyUrl);
+      var casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
 
-      var casosUrl = _this.props.casos_url;
+      if (typeof _this.props.casos_url != 'undefined') {
+        casosUrl = _this.props.casos_url;
+      }
+
+      console.log('casosUrl=', casosUrl);
       fetch(proxyUrl + casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
