@@ -76,11 +76,17 @@ class MapaTiempo extends Component {
 
     obtenerCasos = () => {
         let proxyUrl = ''
-        if (this.props.usar_proxy_cors) {
+        if (typeof this.props.usar_proxy_cors != 'undefined' &&
+          this.props.usar_proxy_cors == 'true') {
           proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         }
-        //const casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
-        const casosUrl = this.props.casos_url
+        console.log('proxyUrl=', proxyUrl)
+        let casosUrl = 'https://base.nocheyniebla.org/casos/cuenta';
+        if (typeof this.props.casos_url != 'undefined') {
+          casosUrl = this.props.casos_url
+        }
+        console.log('casosUrl=', casosUrl)
+
         fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
         //fetch(casosUrl).then((res) => res.json()).then((res) => {
             console.log("casos: ", res)
