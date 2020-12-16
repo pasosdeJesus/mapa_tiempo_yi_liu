@@ -633,7 +633,7 @@ ul.map-nav-bar:not(:hover) li.current {
     border-radius: 20px;
     font-weight: 300;
     height: 24px;
-    width: 60px;
+    width: 85px;
     background-color: var(--lighter-grey);
     display: flex;
     justify-content: center;
