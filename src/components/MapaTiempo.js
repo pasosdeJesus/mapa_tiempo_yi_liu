@@ -77,7 +77,7 @@ class MapaTiempo extends Component {
     }
 
     obtenerCasos = () => {
-        let proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+        let proxyUrl = ''
         if (typeof this.props.usar_proxy_cors != 'undefined' &&
           this.props.usar_proxy_cors == 'true') {
           proxyUrl = 'https://cors-anywhere.herokuapp.com/';

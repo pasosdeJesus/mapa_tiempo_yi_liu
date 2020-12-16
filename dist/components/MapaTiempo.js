@@ -115,11 +115,13 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
     _this.state = _objectSpread({
-      startDate: '2020-01-24',
-      endDate: '2020-06-25',
+      startDate: '2020-01-01',
+      endDate: '2020-07-25',
       date: '2020-06-25',
       tempDate: '2020-06-25',
       plotDates: ['2020-01-24', '2020-06-25'],
+      fechaLista: [],
+      ultimoCaso: '',
       data: null,
       dataLoaded: false,
       lang: 'es',
@@ -169,7 +171,7 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
         casosUrl = _this.props.casos_url;
       }
 
-      console.log('casosUrl=', casosUrl);
+      console.log('casosUrl:', casosUrl);
       fetch(proxyUrl + casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -198,11 +200,29 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
           cuentaTotal[departamento] = 0;
         }
       });
+      var listaFechas = [];
+      var fechaUltimoCaso = 0;
       casosApi.map(function (casos) {
         cuentaPais += casos.cuenta;
         _all["default"][pais].confirmedCount[casos.fecha] = cuentaPais;
 
         if (casos.nombre) {
+          if (casos.fecha) {
+            var _fecha = new Date(casos.fecha);
+
+            var year = _fecha.getFullYear();
+
+            if (listaFechas.indexOf(year) == -1) {
+              listaFechas.push(year);
+            }
+
+            var tiempo = new Date(fechaUltimoCaso);
+
+            if (_fecha.getTime() > tiempo.getTime()) {
+              fechaUltimoCaso = casos.fecha;
+            }
+          }
+
           Object.entries(_all["default"][pais]).map(function (item) {
             if (_typeof(item[1]) == "object" && item[1].ENGLISH) {
               var departamento = item[0];
@@ -218,12 +238,38 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
           });
         }
       });
+      var fecha = listaFechas[listaFechas.length - 2];
 
       _this.setState({
-        data: _all["default"]
+        data: _all["default"],
+        fechaLista: listaFechas,
+        startDate: fecha + '-01-01',
+        endDate: fecha + '-12-31',
+        ultimoCaso: fechaUltimoCaso
       });
 
+      console.log("Fechas: ", fechaUltimoCaso);
       console.log("Data allJson refact: ", _all["default"]);
+    };
+
+    _this.cambiarFecha = function (year) {
+      var fechaFin = year + '-12-31';
+      var ultimoCaso = _this.state.ultimoCaso;
+      var fecha = new Date(ultimoCaso);
+
+      if (fecha.getFullYear() == year) {
+        /* var mes = fecha.getMonth() + 1
+        if (mes < 10) mes = `0${mes}`;
+        fechaFin = fecha.getFullYear()+'-'+mes+'-'+fecha.getDate(); */
+        fechaFin = ultimoCaso;
+      }
+
+      console.log(fechaFin);
+
+      _this.setState({
+        startDate: year + '-01-01',
+        endDate: fechaFin
+      });
     };
 
     _this.updateFullDimensions = function () {
@@ -453,6 +499,7 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
         })));
       }), /*#__PURE__*/_react["default"].createElement(_MapNavBar["default"], _extends({}, this.state, {
         mapToggle: this.mapToggle,
+        cambiarFecha: this.cambiarFecha,
         metricToggle: this.metricToggle,
         regionToggle: this.regionToggle
       })), /*#__PURE__*/_react["default"].createElement(_DateSlider["default"], _extends({}, this.state, {
@@ -472,7 +519,11 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
           flexDirection: 'column',
           padding: 10
         }
-      }, /*#__PURE__*/_react["default"].createElement(_Region["default"], _extends({}, this.state, {
+      }, /*#__PURE__*/_react["default"].createElement(_reactTooltip["default"], {
+        className: "plot-tooltip",
+        type: darkMode ? 'dark' : 'light',
+        html: true
+      }), /*#__PURE__*/_react["default"].createElement(_Region["default"], _extends({}, this.state, {
         regionToggle: this.regionToggle,
         ReactTooltip: _reactTooltip["default"]
       })), /*#__PURE__*/_react["default"].createElement(_MainCounts["default"], this.state), /*#__PURE__*/_react["default"].createElement(_Plot["default"], _extends({}, this.state, {
@@ -485,11 +536,7 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
         fullTreeToggle: this.fullTreeToggle
       })), /*#__PURE__*/_react["default"].createElement("div", {
         className: "footer-placeholder"
-      })))))), /*#__PURE__*/_react["default"].createElement(_reactTooltip["default"], {
-        className: "plot-tooltip",
-        type: darkMode ? 'dark' : 'light',
-        html: true
-      }));
+      })))))));
     }
   }]);
 
