@@ -36,11 +36,13 @@ const defaultState = {
 
 class MapaTiempo extends Component {
     state = {
-        startDate: '2020-01-24',
-        endDate: '2020-06-25',
+        startDate: '2020-01-01',
+        endDate: '2020-07-25',
         date: '2020-06-25',
         tempDate: '2020-06-25',
         plotDates: [ '2020-01-24', '2020-06-25' ],
+        fechaLista: [],
+        ultimoCaso: '',
         data: null,
         dataLoaded: false,
         lang: 'es',
@@ -85,7 +87,7 @@ class MapaTiempo extends Component {
         if (typeof this.props.casos_url != 'undefined') {
           casosUrl = this.props.casos_url
         }
-        console.log('casosUrl=', casosUrl)
+        console.log('casosUrl:', casosUrl)
 
         fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
         //fetch(casosUrl).then((res) => res.json()).then((res) => {
@@ -115,12 +117,27 @@ class MapaTiempo extends Component {
             }
         });
 
+        var listaFechas = [];
+        var fechaUltimoCaso = 0;
+
         casosApi.map((casos) => {
 
             cuentaPais += casos.cuenta
             allJson[pais].confirmedCount[casos.fecha] = cuentaPais;
 
             if(casos.nombre){
+
+                if(casos.fecha){
+                    const fecha = new Date(casos.fecha);
+                    const year = fecha.getFullYear();
+                    if(listaFechas.indexOf(year) == -1){
+                        listaFechas.push(year)
+                    }
+                    const tiempo = new Date(fechaUltimoCaso)
+                    if(fecha.getTime() > tiempo.getTime()){
+                        fechaUltimoCaso = casos.fecha;
+                    }
+                } 
 
                 Object.entries(allJson[pais]).map ( (item) =>{
                     if(typeof item[1] == "object" && item[1].ENGLISH){
@@ -137,10 +154,36 @@ class MapaTiempo extends Component {
             }
         });
 
+        const fecha = listaFechas[listaFechas.length-2];
+
         this.setState({
-            data: allJson
+            data: allJson,
+            fechaLista: listaFechas,
+            startDate: fecha+'-01-01',
+            endDate: fecha+'-12-31',
+            ultimoCaso: fechaUltimoCaso
         })
+        console.log("Fechas: ", fechaUltimoCaso)
         console.log("Data allJson refact: ", allJson)
+    }
+
+    cambiarFecha = (year) =>{
+        var fechaFin = year+'-12-31'; 
+
+        const { ultimoCaso } = this.state
+        var fecha = new Date(ultimoCaso);
+        if (fecha.getFullYear() == year) {
+            /* var mes = fecha.getMonth() + 1
+            if (mes < 10) mes = `0${mes}`;
+            fechaFin = fecha.getFullYear()+'-'+mes+'-'+fecha.getDate(); */
+            fechaFin = ultimoCaso;
+        }
+        console.log(fechaFin);
+
+        this.setState({
+            startDate: year+'-01-01',
+            endDate: fechaFin
+        })
     }
 
     componentDidMount() {
@@ -309,6 +352,7 @@ class MapaTiempo extends Component {
                                 <MapNavBar
                                     {...this.state}
                                     mapToggle={this.mapToggle}
+                                    cambiarFecha={this.cambiarFecha}
                                     metricToggle={this.metricToggle}
                                     regionToggle={this.regionToggle}
                                 />
@@ -327,6 +371,7 @@ class MapaTiempo extends Component {
                             {!fullMap && (
                                 <Col lg={!fullPlot && !fullTree ? 5 : 12} className="col-right">
                                     <Row style={{ display: 'flex', flexDirection: 'column', padding: 10 }}>
+                                    <ReactTooltip className="plot-tooltip" type={darkMode ? 'dark' : 'light'} html={true} />
                                         <Region
                                             {...this.state}
                                             regionToggle={this.regionToggle}
@@ -353,7 +398,6 @@ class MapaTiempo extends Component {
                     </Container>
                 </Fragment>
             )}
-            <ReactTooltip className="plot-tooltip" type={darkMode ? 'dark' : 'light'} html={true} />
         </div>
     )
   }

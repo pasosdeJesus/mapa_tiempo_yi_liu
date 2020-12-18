@@ -637,8 +637,13 @@ TRANSMISSION_NETWORK:
   zh: 疫情传播图
 RESET:
   en: Reset
-  es: Reset
+  es: Restaurar
   fr: Reset
+  zh: 重置
+YEAR:
+  en: Year
+  es: Año
+  fr: Year
   zh: 重置
 DARK:
   en: Dark

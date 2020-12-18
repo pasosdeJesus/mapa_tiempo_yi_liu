@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import i18n from 'js-yaml-loader!../../assets/data/i18n.yml';
 import { FiMap } from 'react-icons/fi'
 import 'flag-icon-css/css/flag-icon.min.css'
 import { metricText } from '../utils/utils'
@@ -54,8 +55,8 @@ export default class MapNavBar extends Component {
     }
 
     render() {
-        const { lang, metric, currentMap, fullPlot, fullTree, plotType } = this.props
-
+        const { fechaLista, lang, metric, currentMap, fullPlot, fullTree, plotType, cambiarFecha } = this.props
+        const listYears = ['2019', '2018', '2020']
         return (
             <div className={`map-nav-bar-wrap ${fullPlot && !plotTypes[plotType].metricChange ? 'grey-out' : ''}`}>
                 <ul className="map-nav-bar">
@@ -68,8 +69,30 @@ export default class MapNavBar extends Component {
                     ))}
                 </ul>
 
-                {!fullPlot &&
-                !fullTree && (
+                {!fullPlot && !fullTree && (
+                    <UncontrolledDropdown className="map-toggle">
+                        <DropdownToggle
+                            tag="span"
+                            className="map-toggle-button"
+                            data-tip={i18n.YEAR[lang]}
+                        >
+                            {i18n.YEAR[lang]}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            {fechaLista.map((x) => (
+                                <DropdownItem
+                                    key={x}
+                                    className={ 'current' }
+                                    onClick={() => cambiarFecha(x)}
+                                >
+                                    {x}
+                                </DropdownItem>
+                            ))}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+                )}
+
+                {!fullPlot && !fullTree && (
                     <UncontrolledDropdown className="map-toggle">
                         <DropdownToggle
                             className="map-toggle-button"

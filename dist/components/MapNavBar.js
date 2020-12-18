@@ -11,6 +11,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactstrap = require("reactstrap");
 
+var _i18n = _interopRequireDefault(require("js-yaml-loader!../../assets/data/i18n.yml"));
+
 var _fi = require("react-icons/fi");
 
 require("flag-icon-css/css/flag-icon.min.css");
@@ -22,6 +24,8 @@ var _map_text = require("../utils/map_text");
 var str = _interopRequireWildcard(require("../utils/strings"));
 
 var _plot_types = require("../utils/plot_types");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -128,12 +132,15 @@ var MapNavBar = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var _this$props = this.props,
+          fechaLista = _this$props.fechaLista,
           lang = _this$props.lang,
           metric = _this$props.metric,
           currentMap = _this$props.currentMap,
           fullPlot = _this$props.fullPlot,
           fullTree = _this$props.fullTree,
-          plotType = _this$props.plotType;
+          plotType = _this$props.plotType,
+          cambiarFecha = _this$props.cambiarFecha;
+      var listYears = ['2019', '2018', '2020'];
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "map-nav-bar-wrap ".concat(fullPlot && !_plot_types.plotTypes[plotType].metricChange ? 'grey-out' : '')
       }, /*#__PURE__*/_react["default"].createElement("ul", {
@@ -147,6 +154,20 @@ var MapNavBar = /*#__PURE__*/function (_Component) {
           onClick: _this2.metricToggle
         }, _utils.metricText[count][lang]));
       })), !fullPlot && !fullTree && /*#__PURE__*/_react["default"].createElement(_reactstrap.UncontrolledDropdown, {
+        className: "map-toggle"
+      }, /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownToggle, {
+        tag: "span",
+        className: "map-toggle-button",
+        "data-tip": _i18n["default"].YEAR[lang]
+      }, _i18n["default"].YEAR[lang]), /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownMenu, null, fechaLista.map(function (x) {
+        return /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownItem, {
+          key: x,
+          className: 'current',
+          onClick: function onClick() {
+            return cambiarFecha(x);
+          }
+        }, x);
+      }))), !fullPlot && !fullTree && /*#__PURE__*/_react["default"].createElement(_reactstrap.UncontrolledDropdown, {
         className: "map-toggle"
       }, /*#__PURE__*/_react["default"].createElement(_reactstrap.DropdownToggle, {
         className: "map-toggle-button",
