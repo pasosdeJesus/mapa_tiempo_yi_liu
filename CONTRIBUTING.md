@@ -6,7 +6,7 @@ este ejemplo:
 <https://github.com/vtamara/react_ejemplo_stiff>
 
 
-## 3.1 Utilizando su propia copia
+## 1.1 Utilizando su propia copia
 
 Para empezar a hacer cambios sugerimos que bifurque este repositorio, clone su repositorio bifurcado y 
 compile a partir de sus fuentes lo que irá en `dist`:
@@ -21,7 +21,7 @@ compile a partir de sus fuentes lo que irá en `dist`:
 El último paso debe ejecutar `yarn build` y `yarn run transpile`.
 
 
-### 3.1.1 Probar sus cambios
+### 1.1.1 Probar sus cambios
 
 Para probar las actualizaciones o cambios que haga genere el directorio 
 `dist` con
@@ -38,7 +38,7 @@ Al revisar con un navegador deberá ver que empieza a cargar, pero
 no mucho más por cuanto no hay un servidor que le responda con la 
 información que requiere.
 
-### 3.1.2 Use su paquete modificado localmente desde una aplicación
+### 1.1.2 Use su paquete modificado localmente desde una aplicación
 
 Es importante que en su copia local de `mapa_tiempo_yi_liu` pueble el 
 directorio `dist` ejecutando:
@@ -75,7 +75,7 @@ directorio `public/packs`:
      bin/rails webpacker:compile
 
 
-### 3.1.3 Use su paquete en github desde una aplicación
+### 1.1.3 Use su paquete en github desde una aplicación
 
 Para evitar tener que borrar `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules`
 cada vez que haga cambios en su copia local, puede optar por subir
@@ -102,7 +102,7 @@ y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
      yarn remove @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
 
-### 3.1.4 Actualizar dependencias
+### 1.1.4 Actualizar dependencias
 
 Revise `package.json` para asegurar la distribución correcta de los paquetes 
 de los que depende este, entre las 3 secciones de dependencias:
@@ -135,7 +135,7 @@ En caso de actualizar le agradecemos nos envíe solicitud de cambios
 (Pull Request).
 
 
-## 3.2 Publicar cambios en registro npm
+## 1.2 Publicar cambios en registro npm
 
 La publicación requerirá la clave de vtamara@pasosdeJesus.org en el repositorio npm.
 
