@@ -82,7 +82,7 @@ Puede que tenga que revisar y limpiar cache:
 
 Si requiere versiones más actualizadas de las requeridas por este paquete, 
 vea en
-[CONTRIBUTING](https://github.com/pasosdeJesus/mapa_tiempo_yi_liu/blob/main/CONTRIBUTING.md) 
+[CONTRIBUTING.md](https://github.com/pasosdeJesus/mapa_tiempo_yi_liu/blob/main/CONTRIBUTING.md) 
 como puede actualizar paquetes de los que depende este.
 
 
