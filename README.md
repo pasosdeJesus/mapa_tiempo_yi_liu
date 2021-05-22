@@ -213,6 +213,4 @@ Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión y
 * Aumentar la versión en `package.json`
 * Compilar con `yarn build;  yarn run transpile`
 * Probar minimamente operación  con `yarn start`
-* Publicar en el registro npm con
-    
-    yarn publish
+* Publicar en el registro npm con `yarn publish`
