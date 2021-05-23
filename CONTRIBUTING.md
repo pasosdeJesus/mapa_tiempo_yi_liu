@@ -34,9 +34,9 @@ Y pruebe minimamente la operación con
     yarn start
 
 que iniciará una instancia que escucha http en el puerto 2700.  
-Al revisar con un navegador deberá ver que empieza a cargar, pero 
-no mucho más por cuanto no hay un servidor que le responda con la 
-información que requiere.
+Al revisar con un navegador deberá ver que empieza a cargar y
+por omisión usará conteos de violencia política
+del Banco de Datos del CINEP..
 
 ### 1.1.2 Use su paquete modificado localmente desde una aplicación
 
@@ -87,7 +87,8 @@ no soporta el `prepare` de `package.json`  --que se supone si es soportado
 por `npm`-- y que indica como construir el paquete cuando se descarga 
 de un sitio sólo con fuentes.
 
-Por este motivo deber agregar el directorio `dist`  a su repositorio github.
+Por este motivo recomendamos incluir el directorio `dist` en el repositorio
+de github.
 
 Una vez en la aplicación indique que usará su versión publicada en github:
 
@@ -116,7 +117,7 @@ los paquetes que un aplicación que use esta vayan a requerir.
 Sería ideal que `dependencies` estuviera en blanco, pues las versiones 
 que allí se pongan serán precisamente las que deben ponerse en la aplicación 
 que usará este paquete. Sabrá que una dependencia debe estar en esta 
-sección si al ejecutar yarn install en este paquete obtiene
+sección si al ejecutar `yarn install` en este paquete obtiene
 un error del estilo:
 
     ERROR in ./src/components/RawTable.js
@@ -146,5 +147,5 @@ Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión y
   `yarn check`
 * Aumentar la versión en `package.json`
 * Compilar con `yarn build;  yarn run transpile`
-* Probar minimamente operación  con `yarn start`
+* Probar minimamente operación  con `yarn start` o mejor desde una aplicación rails como cor1440_cinep
 * Publicar en el registro npm con `yarn publish`
