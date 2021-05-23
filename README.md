@@ -19,7 +19,7 @@ que use la gema `react-rails` y si hace falta que la instale y/o actualice
 la configuración de `react-rails`.  Tras esto puede añadir las dependencias 
 que este paquete exige: 
 ```
-yarn add @pasosdejesus/mapa_tiempo_yi_liu
+yarn add github:pasosdeJesus/mapa_tiempo_yi_liu
 yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
  react-toggle react-text-transition react-table react-simple-maps \
  react-select react-scripts react-measure react-loader-spinner \
@@ -48,7 +48,11 @@ render(<App />, document.getElementById('root'))
 
 Por ahora la aplicación incluye de forma estática los datos necesarios 
 únicamente para la visualización del mapa de Colombia y sus departamentos. 
+Y por omisión intenta usar datos de violencia política del Banco de Datos
+del CINEP.  Para proveer sus datos use el prop `casos_url` con el URL.
+Si planea emplear un proxy puede especificarlo en el prop `proxy_url`.
 
+# 2. Ayudas para resolver problemas en el uso
 
 Si al ejecutar no se presenta el mapa, y en el inspector ve un problema 
 del estilo:
@@ -68,7 +72,8 @@ if (!Array.isArray(nodeModulesLoader.exclude)) {
 nodeModulesLoader.exclude.push(/react-table/)
 ```
 
-# 2. Ayudas para resolver problemas en el uso
+
+# 3. Revisando dependencias
 
 Este paquete requiere que se agreguen muchos otros paquetes a su aplicación, 
 y requiere unas versiones particulares que pueden ser diferentes a las que 
