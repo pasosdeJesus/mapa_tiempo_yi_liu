@@ -147,5 +147,5 @@ Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión y
   `yarn check`
 * Aumentar la versión en `package.json`
 * Compilar con `yarn build;  yarn run transpile`
-* Probar minimamente operación  con `yarn start` o mejor desde una aplicación rails como cor1440_cinep
+* Probar minimamente operación  con `yarn start` o mejor desde una aplicación rails como sivel2
 * Publicar en el registro npm con `yarn publish`
