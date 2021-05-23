@@ -19,7 +19,7 @@ que use la gema `react-rails` y si hace falta que la instale y/o actualice
 la configuración de `react-rails`.  Tras esto puede añadir las dependencias 
 que este paquete exige: 
 ```
-yarn add github:pasosdeJesus/mapa_tiempo_yi_liu
+yarn add @pasosdeJesus/mapa_tiempo_yi_liu
 yarn add babel-loader svg-url-loader style-loader reactstrap react-tooltip \
  react-toggle react-text-transition react-table react-simple-maps \
  react-select react-scripts react-measure react-loader-spinner \
