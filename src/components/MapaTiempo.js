@@ -60,7 +60,6 @@ class MapaTiempo extends Component {
     }
 
     fetchData = () => {
-        //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
         const latest = Object.keys(allJson[str.COLOMBIA_ZH].confirmedCount).pop()
         this.setState({
             data: allJson,
@@ -89,7 +88,6 @@ class MapaTiempo extends Component {
         console.log('casosUrl:', casosUrl)
 
         fetch(proxyUrl + casosUrl).then((res) => res.json()).then((res) => {
-        //fetch(casosUrl).then((res) => res.json()).then((res) => {
             console.log("casos: ", res)
             this.cambiarDatos(res["casos"])
         })
@@ -154,7 +152,6 @@ class MapaTiempo extends Component {
         });
 
         const fecha = listaFechas[listaFechas.length-2];
-
         this.setState({
             data: allJson,
             fechaLista: listaFechas,
@@ -162,13 +159,23 @@ class MapaTiempo extends Component {
             endDate: fecha+'-12-31',
             ultimoCaso: fechaUltimoCaso
         })
+	const fechaact = this.state.date
+	var mesini = '07';
+	var mesfin = '12';
+        var mess = parseInt(fechaact.split("-")[1])
+	if( mess < 7){
+	 mesini = '01';
+	 mesfin = '06';
+	}
+        this.setState({
+            plotDates: [ fecha+'-'+mesini+'-01', fecha+'-'+mesfin+'-31' ]
+        })
         console.log("Fechas: ", fechaUltimoCaso)
         console.log("Data allJson refact: ", allJson)
     }
 
     cambiarFecha = (year) =>{
         var fechaFin = year+'-12-31'; 
-
         const { ultimoCaso } = this.state
         var fecha = new Date(ultimoCaso);
         if (fecha.getFullYear() == year) {
@@ -177,10 +184,17 @@ class MapaTiempo extends Component {
             fechaFin = fecha.getFullYear()+'-'+mes+'-'+fecha.getDate(); */
             fechaFin = ultimoCaso;
         }
-        console.log(fechaFin);
-
+	const fechaact = this.state.date
+	var mesini = '07';
+	var mesfin = '12';
+        var mess = parseInt(fechaact.split("-")[1])
+	if( mess < 7){
+	 mesini = '01';
+	 mesfin = '06';
+	}
         this.setState({
             startDate: year+'-01-01',
+            plotDates: [ year+'-'+mesini+'-01', year+'-'+mesfin+'-31' ],
             endDate: fechaFin
         })
     }
@@ -264,8 +278,22 @@ class MapaTiempo extends Component {
 
     handleMapZoomChange = (newZoom) => this.setState({ mapZoom: newZoom })
 
-    handleDateChange = (newDate) => this.setState({ date: newDate, tempDate: newDate })
-
+    handleDateChange = (newDate) =>{ 
+	const fechaact = newDate
+	var mesini = '07';
+	var mesfin = '12';
+        var fecha = parseInt(fechaact.split("-")[0])
+        var mess = parseInt(fechaact.split("-")[1])
+	if( mess < 7){
+	 mesini = '01';
+	 mesfin = '06';
+	}
+	this.setState({
+          date: newDate, 
+          plotDates: [ fecha+'-'+mesini+'-01', fecha+'-'+mesfin+'-31' ],
+	  tempDate: newDate 
+	})
+    }
     handleTempDateChange = (newDates) => {
         const newDateStrings = newDates.map((x) => isoDate(x, this.state.endDate).slice(0, 10))
         if (!this.state.fullPlot) {
@@ -292,7 +320,7 @@ class MapaTiempo extends Component {
                 <Loading />
             ) : (
                 <Fragment>
-                    <Container className={`app-container ${fullScreenMode}`}>
+                    <Container className={`themed-container ${fullScreenMode}`} fluid={true}>
                         <Row>
                             <Col lg={!fullMap ? 7 : 12}>
                                 <div className="header">

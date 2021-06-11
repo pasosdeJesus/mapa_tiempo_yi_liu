@@ -59,6 +59,7 @@ export default class DateSlider extends Component {
                 onUpdate={handleTempDateChange}
                 values={values}
             >
+		
                 <Rail>
                     {({ getRailProps }) => (
                         <Fragment>

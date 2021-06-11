@@ -145,6 +145,8 @@ class Map extends Component {
                     />
                     <ZoomableGroup
                         zoom={mapZoom}
+                        minZoom={1}
+                        maxZoom={1}
                         onMoveStart={(e, m) => this.setState({ cursor: [ m.x, m.y ], clicked: false })}
                         onMoveEnd={(e, m) => {
                             // click on desktop
@@ -156,8 +158,6 @@ class Map extends Component {
                             isMobile || isIPad13 ? () => this.setState({ clicked: true }) : null
                         }
                         center={center}
-                        minZoom={0.2}
-                        maxZoom={5}
                     >
                         {![ str.WORLD_MAP ].includes(this.props.currentMap) && (
                             <Geographies
