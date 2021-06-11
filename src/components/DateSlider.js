@@ -13,7 +13,6 @@ function formatTick(ms, lang) {
 export default class DateSlider extends Component {
     render() {
         const {
-	    cambiarFecha,
             date,
             lang,
             startDate,
