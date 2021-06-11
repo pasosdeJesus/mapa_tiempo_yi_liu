@@ -133,6 +133,9 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "3.4.0",
+    "@nivo/api": "^0.70.1",
+    "@nivo/axes": "^0.70.1",
+    "@nivo/core": "^0.70.1",
     "d3-force": "^3.0.0",
     "react-table": "^7.7.0"
   }
