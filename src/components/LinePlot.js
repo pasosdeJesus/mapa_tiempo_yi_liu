@@ -23,7 +23,6 @@ export default class LinePlot extends Component {
             currentMap
         } = this.props
 
-
         if (plotParameters.type !== 'line') return <div />
 
         return (

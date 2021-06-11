@@ -13,6 +13,7 @@ function formatTick(ms, lang) {
 export default class DateSlider extends Component {
     render() {
         const {
+	    cambiarFecha,
             date,
             lang,
             startDate,
@@ -59,6 +60,7 @@ export default class DateSlider extends Component {
                 onUpdate={handleTempDateChange}
                 values={values}
             >
+		<h3 className="header-title">Fecha: {date}</h3>
                 <Rail>
                     {({ getRailProps }) => (
                         <Fragment>
