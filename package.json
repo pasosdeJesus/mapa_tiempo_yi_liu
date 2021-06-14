@@ -36,7 +36,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-jest": "^27.0.1",
-    "bootstrap": "^5.0.1",
     "css-loader": "^5.0.1",
     "date-fns": "^2.22.1",
     "file-loader": "^6.2.0",
@@ -81,7 +80,6 @@
     "@nivo/line": "^0.70.1",
     "@nivo/stream": "^0.70.1",
     "@vx/pattern": "^0.0.199",
-    "bootstrap": "^5.0.1",
     "css-loader": "^5.2.6",
     "d3": "^6.7.0",
     "d3-drag": "^3.0.0",
@@ -136,6 +134,7 @@
     "@nivo/api": "^0.70.1",
     "@nivo/axes": "^0.70.1",
     "@nivo/core": "^0.70.1",
+    "bootstrap": "4.6.0",
     "d3-force": "^3.0.0",
     "react-table": "^7.7.0"
   }
