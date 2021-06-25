@@ -8,9 +8,10 @@ este ejemplo:
 
 ## 1.1 Utilizando su propia copia
 
-Para empezar a hacer cambios sugerimos que bifurque este repositorio, clone su repositorio bifurcado y 
-compile a partir de sus fuentes lo que irá en `dist`:
-    
+Para empezar a hacer cambios sugerimos que bifurque este repositorio, clone 
+su repositorio bifurcado y compile a partir de sus fuentes lo que irá en 
+`dist`:
+
     mkdir -p ~/comp/js/
     cd ~/comp/js/
     git clone git@github/miusuario/mapa_tiempo_yi_liu
@@ -18,7 +19,8 @@ compile a partir de sus fuentes lo que irá en `dist`:
     yarn upgrade
     yarn install
 
-El último paso debe ejecutar `yarn build` y `yarn run transpile`.
+El último paso además de instalar, debe ejecutar `yarn build` y 
+`yarn run transpile`.
 
 
 ### 1.1.1 Probar sus cambios
@@ -36,7 +38,7 @@ Y pruebe minimamente la operación con
 que iniciará una instancia que escucha http en el puerto 2700.  
 Al revisar con un navegador deberá ver que empieza a cargar y
 por omisión usará conteos de violencia política
-del Banco de Datos del CINEP..
+del Banco de Datos del CINEP.
 
 ### 1.1.2 Use su paquete modificado localmente desde una aplicación
 

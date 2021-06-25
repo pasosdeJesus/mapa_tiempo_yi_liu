@@ -138,7 +138,6 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
     }, defaultState);
 
     _this.fetchData = function () {
-      //fetch('/sivel2/casos/infomapa/datoscovid').then((res) => res.json()).then((res) => {
       var latest = Object.keys(_all["default"][str.COLOMBIA_ZH].confirmedCount).pop();
 
       _this.setState({
@@ -160,8 +159,8 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
     _this.obtenerCasos = function () {
       var proxyUrl = '';
 
-      if (typeof _this.props.usar_proxy_cors != 'undefined' && _this.props.usar_proxy_cors == 'true') {
-        proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      if (typeof _this.props.proxy_url != 'undefined') {
+        proxyUrl = _this.props.proy_url;
       }
 
       console.log('proxyUrl=', proxyUrl);
@@ -175,7 +174,6 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
       fetch(proxyUrl + casosUrl).then(function (res) {
         return res.json();
       }).then(function (res) {
-        //fetch(casosUrl).then((res) => res.json()).then((res) => {
         console.log("casos: ", res);
 
         _this.cambiarDatos(res["casos"]);
@@ -248,6 +246,20 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
         ultimoCaso: fechaUltimoCaso
       });
 
+      var fechaact = _this.state.date;
+      var mesini = '07';
+      var mesfin = '12';
+      var mess = parseInt(fechaact.split("-")[1]);
+
+      if (mess < 7) {
+        mesini = '01';
+        mesfin = '06';
+      }
+
+      _this.setState({
+        plotDates: [fecha + '-' + mesini + '-01', fecha + '-' + mesfin + '-31']
+      });
+
       console.log("Fechas: ", fechaUltimoCaso);
       console.log("Data allJson refact: ", _all["default"]);
     };
@@ -264,10 +276,19 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
         fechaFin = ultimoCaso;
       }
 
-      console.log(fechaFin);
+      var fechaact = _this.state.date;
+      var mesini = '07';
+      var mesfin = '12';
+      var mess = parseInt(fechaact.split("-")[1]);
+
+      if (mess < 7) {
+        mesini = '01';
+        mesfin = '06';
+      }
 
       _this.setState({
         startDate: year + '-01-01',
+        plotDates: [year + '-' + mesini + '-01', year + '-' + mesfin + '-31'],
         endDate: fechaFin
       });
     };
@@ -385,8 +406,20 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
     };
 
     _this.handleDateChange = function (newDate) {
-      return _this.setState({
+      var fechaact = newDate;
+      var mesini = '07';
+      var mesfin = '12';
+      var fecha = parseInt(fechaact.split("-")[0]);
+      var mess = parseInt(fechaact.split("-")[1]);
+
+      if (mess < 7) {
+        mesini = '01';
+        mesfin = '06';
+      }
+
+      _this.setState({
         date: newDate,
+        plotDates: [fecha + '-' + mesini + '-01', fecha + '-' + mesfin + '-31'],
         tempDate: newDate
       });
     };
@@ -455,7 +488,8 @@ var MapaTiempo = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "App ".concat(darkMode ? 'dark' : '')
       }, !dataLoaded ? /*#__PURE__*/_react["default"].createElement(_Loading["default"], null) : /*#__PURE__*/_react["default"].createElement(_react.Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactstrap.Container, {
-        className: "app-container ".concat(fullScreenMode)
+        className: "themed-container ".concat(fullScreenMode),
+        fluid: true
       }, /*#__PURE__*/_react["default"].createElement(_reactstrap.Row, null, /*#__PURE__*/_react["default"].createElement(_reactstrap.Col, {
         lg: !fullMap ? 7 : 12
       }, /*#__PURE__*/_react["default"].createElement("div", {

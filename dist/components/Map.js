@@ -233,6 +233,8 @@ var Map = /*#__PURE__*/function (_Component) {
         orientation: ['diagonal']
       }), /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.ZoomableGroup, {
         zoom: mapZoom,
+        minZoom: 1,
+        maxZoom: 1,
         onMoveStart: function onMoveStart(e, m) {
           return _this3.setState({
             cursor: [m.x, m.y],
@@ -251,9 +253,7 @@ var Map = /*#__PURE__*/function (_Component) {
             clicked: true
           });
         } : null,
-        center: center,
-        minZoom: 0.2,
-        maxZoom: 5
+        center: center
       }, ![str.WORLD_MAP].includes(this.props.currentMap) && /*#__PURE__*/_react["default"].createElement(_reactSimpleMaps.Geographies, {
         geography: _WORLD["default"] //{`/maps/WORLD.json`}  Aqui
         ,
