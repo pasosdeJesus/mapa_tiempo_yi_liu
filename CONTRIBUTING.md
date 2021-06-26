@@ -63,9 +63,9 @@ Sin embargo como en `node_modules` queda una copia completa de sus fuentes
 locales de `mapa_tiempo_yi_liu`, también quedará copia del directorio 
 `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules` que debe
 borrar para evitar un excesivo tiempo en la ejecución de webpacker:compile 
-(que dará más de 40.000 dependencias en lugar de cerca de 20.000) y al ejecutar
-verá el error 321 de React (Invalid hook call) por tener duplicado react.   
-Por eso debe ejecutar:
+(que dará más de 40.000 dependencias en lugar de cerca de 20.000) y al 
+ejecutar verá el error 321 de React (Invalid hook call) por tener 
+duplicado react.   Por eso debe ejecutar:
 
     rm -rf node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules
 
@@ -79,7 +79,8 @@ directorio `public/packs`:
 
 ### 1.1.3 Use su paquete en github desde una aplicación
 
-Para evitar tener que borrar `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules`
+Para evitar tener que borrar 
+`node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules`
 cada vez que haga cambios en su copia local, puede optar por subir
 los cambios  a su repositorio github y referenciar el mismo desde
 su archivo `package.json`.
@@ -140,14 +141,17 @@ En caso de actualizar le agradecemos nos envíe solicitud de cambios
 
 ## 1.2 Publicar cambios en registro npm
 
-La publicación requerirá la clave de vtamara@pasosdeJesus.org en el repositorio npm.
+La publicación requerirá la clave de vtamara@pasosdeJesus.org en el 
+repositorio npm.
 
-Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión ya publicada.
+Tener en cuenta que el registro npm no permite borrar, ni cambiar una versión 
+ya publicada.
 
 * Hacer los cambios necesarios.
 * Actualizar dependencias con `yarn upgrade; yarn install` y revisar con 
   `yarn check`
 * Aumentar la versión en `package.json`
 * Compilar con `yarn build;  yarn run transpile`
-* Probar minimamente operación  con `yarn start` o mejor desde una aplicación rails como sivel2.1
+* Probar minimamente operación  con `yarn start` o mejor desde una 
+  aplicación rails como sivel2.1
 * Publicar en el registro npm con `yarn publish`
