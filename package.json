@@ -3,6 +3,7 @@
   "main": "dist/index.build.js",
   "version": "0.3.5",
   "description": "Mapa con deslizador de tiempo y graficos ",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack build --mode production",
     "servidor": "node servidor.js",
