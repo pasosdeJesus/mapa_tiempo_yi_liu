@@ -1,15 +1,13 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
-  "version": "0.2.8",
-  "description": "Mapa y graficos ",
-  "main": "dist/index.js",
+  "version": "0.3.4",
+  "description": "Mapa con deslizador de tiempo y graficos ",
   "scripts": {
+    "build": "webpack build --mode production",
+    "servidor": "node servidor.js",
+    "start": "webpack serve --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development",
-    "transpile": "babel src -d dist --copy-files",
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn run transpile",
-    "build": "webpack --mode production"
+    "transpile": "babel src -d dist --copy-files"
   },
   "repository": {
     "type": "git",
@@ -36,12 +34,12 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-jest": "^26.3.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.0.2",
     "css-loader": "^5.0.1",
     "date-fns": "^2.14.0",
     "file-loader": "^6.1.0",
     "flag-icon-css": "^3.5.0",
-    "html-webpack-plugin": "^4.4.1",
+    "html-webpack-plugin": "^4.5.2",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.19",
     "patch-package": "^6.2.0",
@@ -67,8 +65,10 @@
     "reactstrap": "^8.5.1",
     "style-loader": "^2.0.0",
     "svg-url-loader": "^6.0.0",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-middleware": "^5.0.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "peerDependencies": {
     "@babel/core": "^7.11.5",
@@ -94,7 +94,6 @@
     "date-fns": "^2.14.0",
     "file-loader": "^6.1.0",
     "flag-icon-css": "^3.5.0",
-    "html-webpack-plugin": "^4.4.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.19",
     "mapshaper": "^0.5.21",
@@ -135,5 +134,8 @@
     "@ctrl/tinycolor": "3.1.4",
     "d3-force": "^2.0.1",
     "react-table": "^7.2.2"
+  },
+  "browserslist": {
+    "default": ""
   }
 }

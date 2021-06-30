@@ -1,11 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
+
+/*const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, "ejemplos/src/index.html"),
   filename: "./index.html"
-});
+});*/
 module.exports = {
-  entry: path.join(__dirname, "ejemplos/src/index.js"),
+  mode: 'development',
+  entry: {
+    index: "./src/index.js",
+  },
   module: {
     rules: [
       {
@@ -26,13 +30,30 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlWebpackPlugin],
   resolve: {
     extensions: [".js", ".jsx"]
   },
-  devServer: {
-    host: '0.0.0.0',//181.143.184.115',
-    port: 2700 
+  devtool: "inline-source-map",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+  ],
+  watchOptions: {
+    poll: true,
+    ignored: '**/node_modules/**',
   },
-  devtool: "source-map"
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    publicPath: '/',
+  },
+  devServer: {
+    contentBase: './dist',
+    host: '127.0.0.1',
+    port: 2700,
+    public: '127.0.0.1:2700',
+    hot: true
+  },
 };
