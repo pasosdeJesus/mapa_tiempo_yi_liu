@@ -1,13 +1,12 @@
 import React from 'react'
-//import './styles.css'
+import ReactDom from 'react-dom'
 
 import MapaTiempo from './components/MapaTiempo.js'
 
-export default class MapaTiempoYiLiu extends React.Component {
-  render () {
-      return (<div>
-        <MapaTiempo {...this.props}/>
-      </div>)
-  }
-}
+
+ReactDom.render(
+  <MapaTiempo casos_url='https://base.nocheyniebla.org/casos/cuenta' 
+    usar_proxy_cors='false' />, 
+  document.getElementById('root')
+)
 
