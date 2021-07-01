@@ -1,7 +1,7 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
   "main": "dist/index.bundle.js",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Mapa con deslizador de tiempo y graficos ",
   "scripts": {
     "build": "webpack build --mode production",

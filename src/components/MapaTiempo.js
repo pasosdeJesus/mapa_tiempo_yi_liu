@@ -201,7 +201,9 @@ class MapaTiempo extends Component {
 
     componentDidMount() {
         updateDarkMode(this.state.darkMode)
+      debugger
         this.fetchData()
+      debugger
         this.updateFullDimensions()
         window.addEventListener('resize', this.updateFullDimensions)
     }
