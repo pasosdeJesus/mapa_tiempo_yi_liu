@@ -1,10 +1,7 @@
 
 # 1. Desarrollo de este paquete
 
-Para la distribución como paquete npm, utiliza webpack, siguiendo 
-este ejemplo:
-<https://github.com/vtamara/react_ejemplo_stiff>
-
+Para la distribución como paquete npm utilizamos webpack.
 
 ## 1.1 Utilizando su propia copia
 
@@ -18,20 +15,12 @@ su repositorio bifurcado y compile a partir de sus fuentes lo que irá en
     cd mapa_tiempo_yi_liu
     yarn upgrade
     yarn install
-
-El último paso además de instalar, debe ejecutar `yarn build` y 
-`yarn run transpile`.
+    yarn build
 
 
 ### 1.1.1 Probar sus cambios
 
-Para probar las actualizaciones o cambios que haga genere el directorio 
-`dist` con
-
-    yarn build
-    yarn run transpile 
-
-Y pruebe minimamente la operación con
+Pruebe minimamente la operación con
 
     yarn start
 
@@ -46,7 +35,6 @@ Es importante que en su copia local de `mapa_tiempo_yi_liu` pueble el
 directorio `dist` ejecutando:
 
     yarn build
-    yarn run transpile
 
 Después desde el directorio de la aplicación que use este paquete
 puede ejecutar
@@ -151,7 +139,7 @@ ya publicada.
 * Actualizar dependencias con `yarn upgrade; yarn install` y revisar con 
   `yarn check`
 * Aumentar la versión en `package.json`
-* Compilar con `yarn build;  yarn run transpile`
+* Compilar con `yarn build`
 * Probar minimamente operación  con `yarn start` o mejor desde una 
   aplicación rails como sivel2.1
 * Publicar en el registro npm con `yarn publish`

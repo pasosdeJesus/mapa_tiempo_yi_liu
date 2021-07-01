@@ -1,9 +1,8 @@
 {
   "name": "@pasosdejesus/mapa_tiempo_yi_liu",
-  "main": "dist/index.build.js",
+  "main": "dist/index.bundle.js",
   "version": "0.3.6",
   "description": "Mapa con deslizador de tiempo y graficos ",
-  "main": "dist/index.bundle.js",
   "scripts": {
     "build": "webpack build --mode production",
     "servidor": "node servidor.js",
@@ -30,10 +29,6 @@
     "@nivo/circle-packing": "^0.63.1",
     "@nivo/core": "^0.63.1",
     "@nivo/legends": "^0.63.1",
-    "@nivo/line": "^0.63.1",
-    "@nivo/stream": "^0.63.1",
-    "@nivo/bump": "^0.63.1",
-    "@nivo/circle-packing": "^0.63.1",
     "@nivo/line": "^0.63.1",
     "@nivo/stream": "^0.63.1",
     "@vx/pattern": "^0.0.199",
@@ -130,6 +125,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "3.1.4",
+    "@popperjs/core": "^2.9.2",
     "d3-force": "^2.0.1",
     "react-table": "^7.2.2"
   },

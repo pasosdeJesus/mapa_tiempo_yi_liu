@@ -51,9 +51,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     port: 2700,
-    public: '127.0.0.1:2700',
+    public: '0.0.0.0:2700',
     hot: true
   },
 };
