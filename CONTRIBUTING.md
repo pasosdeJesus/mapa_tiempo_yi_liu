@@ -18,18 +18,34 @@ su repositorio bifurcado y compile a partir de sus fuentes lo que irá en
     yarn build
 
 
-### 1.1.1 Probar sus cambios
+### 1.1.1 Probar localmente con servidor web
 
-Pruebe minimamente la operación con
+Configure un servidor web para servir el directorio `dist` 
+y navegue.
+
+Por ejemplo si instala en `/var/www/htdcos/mapa_tiempo_yi_liu`
+y ha configurado su `nginx` o `httpd` para servir `/var/www/htdocs`
+desde un navegador abra <http://localhost/mapa_tiempo_yi_liu/dist>
+
+Una configuración así debe solicitar información de
+base.nocheyniebla.org sin manejar CORS.
+
+### 1.1.2 Probar localmente con servidor mínimo de webpacker
+
+Arranque con:
 
     yarn start
 
 que iniciará una instancia que escucha http en el puerto 2700.  
-Al revisar con un navegador deberá ver que empieza a cargar y
-por omisión usará conteos de violencia política
-del Banco de Datos del CINEP.
+Al revisar con un navegador <http://localhost:2700> deberá ver que 
+empieza a cargar, aunque debe manejar CORS para poder solicitar datos de
+base.nocheyniebla.org.
 
-### 1.1.2 Use su paquete modificado localmente desde una aplicación
+Puede manejar CORS bien con un proxy CORS o bien instalando una extensión
+que evite el bloqueo del navegador. Por ejemplo para chrome:
+https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related
+
+### 1.1.3 Use su paquete modificado localmente desde una aplicación
 
 Es importante que en su copia local de `mapa_tiempo_yi_liu` pueble el 
 directorio `dist` ejecutando:
@@ -65,7 +81,7 @@ directorio `public/packs`:
      bin/rails webpacker:compile
 
 
-### 1.1.3 Use su paquete en github desde una aplicación
+### 1.1.4 Use su paquete en github desde una aplicación
 
 Para evitar tener que borrar 
 `node_modules/@pasosdejesus/mapa_tiempo_yi_liu/node_modules`
@@ -94,7 +110,7 @@ y del condensado sha que queda en `yarn.lock`).  Hemos encontrado útil:
      yarn remove @pasosdejesus/mapa_tiempo_yi_liu
      yarn add github:miusuario/mapa_tiempo_yi_liu
 
-### 1.1.4 Actualizar dependencias
+### 1.1.5 Actualizar dependencias
 
 Revise `package.json` para asegurar la distribución correcta de los paquetes 
 de los que depende este, entre las 3 secciones de dependencias:
